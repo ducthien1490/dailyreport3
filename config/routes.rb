@@ -1,13 +1,4 @@
 Dailyreport3::Application.routes.draw do
-<<<<<<< HEAD
-<<<<<<< HEAD
-  get "static_pages/home"
-  get "static_pages/help"
-  get "static_pages/about"
-  # The priority is based upon order of creation: first created -> highest priority.
-=======
-=======
->>>>>>> duykhanh21-task#6075
 
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
@@ -15,10 +6,7 @@ Dailyreport3::Application.routes.draw do
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
-<<<<<<< HEAD
-   # The priority is based upon order of creation: first created -> highest priority.
->>>>>>> dd096a0adcdd41612d21a1a083c5119e8c7e9d39
-  # See how all your routes lay out with "rake routes".
+
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
@@ -71,8 +59,5 @@ Dailyreport3::Application.routes.draw do
   #     # (app/controllers/admin/products_controller.rb)
   #     resources :products
   #   end
-=======
-  
 
->>>>>>> duykhanh21-task#6075
 end
