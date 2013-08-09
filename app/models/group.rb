@@ -1,3 +1,5 @@
 class Group < ActiveRecord::Base
-	validates :name, presence: true, length: { maximum: 50,minimum:5}
+	validates :name, presence:true
+	has_many  :catalogs,dependent: :destroy
+    has_many  :users
 end

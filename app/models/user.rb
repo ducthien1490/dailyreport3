@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
-before_save { self.email = email.downcase }
-
+  before_save { self.email = email.downcase }
+  belongs_to :catalog
+  has_many :answers
   #validate 
   validates :name, presence: true, length: { maximum: 50,minimum:5}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
