@@ -11,9 +11,9 @@ class CreateUsers < ActiveRecord::Migration
       t.timestamps
 
     end
-      change_column :users, :manager_group ,default: => false 
-      change_column :users, :admin ,default: => false 
-      change_column :users, :active ,default: => false 
-      change_column :users, :group_id ,default: => false 
-  end
+      change_column :users, :manager_group ,:default => false 
+      change_column :users, :admin ,:default => false 
+      change_column :users, :active ,:default => false 
+      
+    end
 end
