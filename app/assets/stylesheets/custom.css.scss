@@ -167,3 +167,15 @@ input {
   margin-top: 20px;
   padding: 80px;
 }
+.center{
+  min-height: 450px;
+}
+/* Admin & User menu */
+.nav-stacked li a{
+  padding: 8px 6px; 
+  width: 140px;
+  text-align: left;
+}
+.nav-stacked {
+  margin-left: 120px;
+}
