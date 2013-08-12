@@ -7,13 +7,13 @@ class CreateUsers < ActiveRecord::Migration
       t.boolean :admin
       t.boolean :active
       t.integer :group_id
-
-      t.timestamps
+      
+      
 
     end
-      change_column :users, :manager_group ,default: => false 
-      change_column :users, :admin ,default: => false 
-      change_column :users, :active ,default: => false 
-      change_column :users, :group_id ,default: => false 
-  end
+      change_column :users, :manager_group,:boolean ,:default => false 
+      change_column :users, :admin ,:boolean, :default => false 
+      change_column :users, :active ,:boolean, :default => false 
+      
+    end
 end
