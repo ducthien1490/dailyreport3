@@ -11,7 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130809065701) do
+ActiveRecord::Schema.define(version: 20130812044833) do
+
+  create_table "answers", force: true do |t|
+    t.integer  "catalog_id"
+    t.integer  "user_id"
+    t.string   "content"
+    t.string   "file_name"
+    t.datetime "time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "catalogs", force: true do |t|
+    t.string   "content"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "groups", force: true do |t|
     t.string   "name"
@@ -20,14 +37,13 @@ ActiveRecord::Schema.define(version: 20130809065701) do
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "manager_group", default: false
-    t.boolean  "admin",         default: false
-    t.boolean  "active",        default: false
-    t.integer  "group_id"
+    t.string  "name"
+    t.string  "email"
+    t.boolean "manager_group",   default: false
+    t.boolean "admin",           default: false
+    t.boolean "active",          default: false
+    t.integer "group_id"
+    t.string  "password_digest"
   end
 
 end

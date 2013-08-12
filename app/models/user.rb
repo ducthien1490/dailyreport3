@@ -1,9 +1,12 @@
 class User < ActiveRecord::Base
-before_save { self.email = email.downcase }
+  before_save { self.email = email.downcase }
+  belongs_to :group
 
+  
+  has_many :answers
   #validate 
   validates :name, presence: true, length: { maximum: 50,minimum:5}
-  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@framgia.com/i
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false } 
@@ -11,7 +14,7 @@ before_save { self.email = email.downcase }
   validates :password, length: { minimum: 6 }
   
   has_secure_password
-  validates :password, length: { minimum: 5 }
+
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
