@@ -100,6 +100,7 @@ footer {
   }
   ul {
     float: right;
+    margin-right: 130px;
     list-style: none;
     li {
       float: left;
@@ -160,4 +161,19 @@ input, textarea, select, .uneditable-input {
 
 input {
   height: auto !important;
+}
+/* Users index */
+
+.users {
+  list-style: none;
+  margin: 0;
+  li {
+    overflow: auto;
+    padding: 10px 0;
+    padding-left:7em;
+    border-top: 1px solid $grayLighter;
+    &:last-child {
+      border-bottom: 1px solid $grayLighter;
+    }
+  }
 }
