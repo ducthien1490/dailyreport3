@@ -8,14 +8,16 @@
 		<li>
 			<%= link_to user.name, user %>
 			| 
-			<% if user.group_id != nil %>
-			Active
-			<% else %>
-			<%= link_to "Deactive", "#" %>
-			<%= link_to "Assign Group", "#" %>
+			<% if current_user.admin? %>
+				<% if user.group_id != nil %>
+					Active
+				<% else %>
+					<%= link_to "Deactive", "#" %>
+					<%= link_to "Assign Group", "#" %>
+				<% end %>
+				<%= link_to "Edit", user %>
+				<%= link_to "Delete", user, method: :delete, data: {confirm: "Are you really want to delete this user?"} %>
 			<% end %>
-			<%= link_to "Edit", user %>
-			<%= link_to "Delete", user, method: :delete, data: {confirm: "Are you really want to delete this user?"} %>
 			
 		</li>
 	<% end %>
