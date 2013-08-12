@@ -1,11 +1,23 @@
 class UsersController < ApplicationController
+	
 
   def new
+  	@password = SecureRandom.hex(10)
   	@user = User.new
   end
 
   def show
   	@users = User.paginate(page: params[:page])
+  end
+
+  def create
+	@user= User.new(save_params)
+  	if @user.save
+  		flash[:success] = "Acount created.Wait for adminstration aproval!"
+  		redirect_to root_url
+  	else
+  		render 'new'
+  	end
   end
 
   def edit
@@ -37,6 +49,10 @@ class UsersController < ApplicationController
   		params.require(:user).permit(:name, :email, :group_id , :manager_group, :active)
   	end
 
+  	def save_params
+  		@password = SecureRandom.hex(10)
+  		params.require(:user).permit(:name, :email, :password,:password_confirmation )
+  	end
   	def signed_in_user
       redirect_to signin_url, notice: "Please sign in." unless signed_in?
     end
