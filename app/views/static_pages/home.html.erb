@@ -1,7 +1,22 @@
 <% provide(:title, 'Home') %>
-<div class=" center hero-unit">
-	<h1> Welcome to Framgia </h1>
-	<h2> This is the Daily Report system </h2>
-	<%= link_to "Sign up now !", signup_path, class: "btn btn-large btn-primary" %>
-</div>
+<% if signed_in? %>
+	<div>
+		<div>
+			<h2>Welcome, <%= current_user.name %></h2>
+		</div>
+		<% if current_user.admin? %>
+			<%= render 'shared/admin_menu' %>
+		<% else %>
+			<%= render 'shared/user_menu' %>
+		<% end %>
+		
+	</div>
+<% else %>	
 
+<div class=" center hero-unit">
+	<h1> Daily Report System </h1>
+	<h2> Welcome Framgia Member</h2>
+	
+	<%= link_to "Sign up now !", signup_path, class: "btn btn-large btn-primary" %>	
+</div>
+<%end %>	
