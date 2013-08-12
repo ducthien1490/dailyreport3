@@ -15,6 +15,9 @@ class UsersController < ApplicationController
 
   def show
   	@users = User.paginate(page: params[:page])
+  	@users.toggle!(:active)
+  	sign_in @user
+  	redirect_to root_url
   end
 
   def create
