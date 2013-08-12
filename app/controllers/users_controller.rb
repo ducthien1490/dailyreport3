@@ -13,7 +13,11 @@ class UsersController < ApplicationController
   end
 
   def show
-  	@users = User.paginate(page: params[:page])
+  	@user = User.find_by(id:params[:id])
+    @user.toogle!(:active)
+    sign_in @user
+    redirect_to root_url
+
   end
 
   def create
@@ -30,11 +34,9 @@ class UsersController < ApplicationController
 
   def edit
   	@user = User.find_by(id: params[:id])
-
-    @user.toggle!(:active) # change attribute active false->true // active User
-
-
   end
+
+
 
   def update   #for admin 
   	@user =User.find(params[:id])
