@@ -17,7 +17,9 @@ class UsersController < ApplicationController
 
   def create
 	@user= User.new(save_params)
-  	if @user.save
+
+  	if @user.save 
+      UserMailer.registration_confirmation(@user).deliver  
   		flash[:success] = "Acount created.Wait for adminstration aproval!"
   		redirect_to root_url
   	else
@@ -27,6 +29,10 @@ class UsersController < ApplicationController
 
   def edit
   	@user = User.find_by(id: params[:id])
+
+    @user.toggle!(:active) # change attribute active false->true // active User
+
+
   end
 
   def update   #for admin 

@@ -12,6 +12,26 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema.define(version: 20130812044833) do
+<<<<<<< HEAD
+=======
+
+  create_table "answers", force: true do |t|
+    t.integer  "catalog_id"
+    t.integer  "user_id"
+    t.string   "content"
+    t.string   "file_name"
+    t.datetime "time"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "catalogs", force: true do |t|
+    t.string   "content"
+    t.integer  "group_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+>>>>>>> 02551737a90cd83f16ebb7a0f97a9d11c79ada1c
 
   create_table "answers", force: true do |t|
     t.integer  "catalog_id"
@@ -32,12 +52,20 @@ ActiveRecord::Schema.define(version: 20130812044833) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
+<<<<<<< HEAD
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.string   "name"
+    t.string  "name"
+    t.string  "email"
+    t.boolean "manager_group",   default: false
+    t.boolean "admin",           default: false
+    t.boolean "active",          default: false
+    t.integer "group_id"
+    t.string  "password_digest"
+=======
     t.string   "email"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -46,6 +74,7 @@ ActiveRecord::Schema.define(version: 20130812044833) do
     t.boolean  "active",          default: false
     t.integer  "group_id"
     t.string   "password_digest"
+>>>>>>> 02551737a90cd83f16ebb7a0f97a9d11c79ada1c
   end
 
 end
