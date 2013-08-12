@@ -11,29 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130812044833) do
-<<<<<<< HEAD
-=======
 
-  create_table "answers", force: true do |t|
-    t.integer  "catalog_id"
-    t.integer  "user_id"
-    t.string   "content"
-    t.string   "file_name"
-    t.datetime "time"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
+ActiveRecord::Schema.define(version: 20130812064114) do
 
-  create_table "catalogs", force: true do |t|
-    t.string   "content"
-    t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
->>>>>>> 02551737a90cd83f16ebb7a0f97a9d11c79ada1c
 
-  create_table "answers", force: true do |t|
+    create_table "answers", force: true do |t|
     t.integer  "catalog_id"
     t.integer  "user_id"
     t.string   "content"
@@ -52,20 +34,12 @@ ActiveRecord::Schema.define(version: 20130812044833) do
 
   create_table "groups", force: true do |t|
     t.string   "name"
-<<<<<<< HEAD
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
     t.string  "name"
-    t.string  "email"
-    t.boolean "manager_group",   default: false
-    t.boolean "admin",           default: false
-    t.boolean "active",          default: false
-    t.integer "group_id"
-    t.string  "password_digest"
-=======
     t.string   "email"
     t.boolean  "manager_group",   default: false
     t.boolean  "admin",           default: false
@@ -74,7 +48,7 @@ ActiveRecord::Schema.define(version: 20130812044833) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "password_digest"
->>>>>>> 02551737a90cd83f16ebb7a0f97a9d11c79ada1c
+    t.string   "remember_token"
   end
-
+  add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 end
