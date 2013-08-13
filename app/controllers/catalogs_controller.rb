@@ -8,6 +8,8 @@ class CatalogsController < ApplicationController
 		if @catalog.save
 			flash[:success] = "A new questions created successfull"
 			redirect_to catalogs_path
+		else 
+			render 'new'
 		end
 
 	end
@@ -15,8 +17,6 @@ class CatalogsController < ApplicationController
 	def index
 		@catalogs = Catalog.all
 	end
-
-
 
 	def edit
 		 @catalog = Catalog.find(params[:id])
@@ -32,7 +32,8 @@ class CatalogsController < ApplicationController
 	def destroy
 	  	@catalog = Catalog.find(params[:id])
   		@catalog.destroy
-  		redirect_to catalogs_path
+  		flash[:success] = "Question deleted!"
+  		redirect_to catalogs_url
 	end
 
 	private

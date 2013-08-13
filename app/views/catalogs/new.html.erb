@@ -1,13 +1,13 @@
 <% provide(:title, 'Create questions') %>
-<h1>Create questions for daily report</h1>
-
-<div class="row">
-	<div class="span offset5">
+<h2>Create questions</h2>
+<div class='center'>
+<%= render 'shared/menu' %>
+	<div class="span6 question" >
 
 		<%= form_for(@catalog) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
-			<%= f.label :group_id %>
+			<%= f.label 'Question for group' %>
 			<%= f.text_field :group_id %>
 
 			<%= f.label :content %>
