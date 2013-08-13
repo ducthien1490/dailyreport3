@@ -16,14 +16,14 @@ class GroupsController < ApplicationController
 	end
 
 	def edit
-		 @group = Group.find(params[:id])
-		 if @group.update_attributes(group_params)
+		@group = Group.find(params[:id])
+		if @group.update_attributes!(group_params)
  			#Handle a successfill update
  			flash[:success] = "Group updated"
- 			redirect_to groups_path	
  		else
  			render 'edit'
  		end
+ 		redirect_to groups_path
 	end
 
 	def destroy
@@ -34,8 +34,10 @@ class GroupsController < ApplicationController
 
 	private
 		def group_params
+			#binding.pry
 			params.require(:group).permit(:name)
 		end
+		
 
 end
 
