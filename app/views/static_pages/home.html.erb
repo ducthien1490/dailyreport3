@@ -1,15 +1,8 @@
 <% provide(:title, 'Home') %>
 <% if signed_in? %>
 	<div class= 'center'>
-		<div>
-			<h2>Welcome, <%= current_user.name %></h2>
-		</div>
-		<% if current_user.admin? %>
-			<%= render 'shared/admin_menu' %>
-		<% else %>
-			<%= render 'shared/user_menu' %>
-		<% end %>
-		
+		<h2>Welcome, <%= current_user.name %></h2>
+		<%= render 'shared/menu' %>
 	</div>
 <% else %>	
 
