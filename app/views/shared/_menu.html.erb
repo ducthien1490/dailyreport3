@@ -1,7 +1,6 @@
-<div class = 'menu'>
+
 		<% if current_user.admin? %>
 			<%= render 'shared/admin_menu' %>
 		<% else %>
 			<%= render 'shared/user_menu' %>
 		<% end %>
-</div>

@@ -1,20 +1,22 @@
 <% provide(:title, 'Question for Report') %>
-<h1> All Questions for Daily report</h1>
-<ul class="questions">
-	
-	<% @catalogs.each do |catalog| %>
-		<table class="table table-striped">
-			<%= catalog.group_id %>
-			<%= catalog.content %>
-			<%= link_to "Edit", "#" %>
-			<%= link_to "Delete",catalog, method: :delete, data: {confirm: "Are you really want to delete this user?"} %>
-			
-		</table>
-	<% end %>
-	<button type="button">
-		<%= link_to "Create new question",new_catalog_path%>
-	</button>
-
-</ul>
+<h2> All Questions</h2>
+<div class='center'>
+	<%=render 'shared/menu' %>
+		
+		<ul class="nav nav-pills">
+			    <li class="active">
+			    <a href="#">Group1</a>
+			    </li>
+			    <li><a href="#">Group2</a></li>
+			    <li><a href="#">Group3</a></li>
+		</ul>
+		<div class="span8 question">	
+			<ol class="catalogs">
+        		<%= render @catalogs %>
+      		</ol>
+				<%= button_to "Create new question",new_catalog_path,
+				:method => :get, class: 'btn btn-medium btn-primary'%>
+		</div>
+	</div>
 
 

@@ -26,6 +26,7 @@ section {
 
 textarea {
   resize: vertical;
+  min-height: 170px;
 }
 
 .center {
@@ -50,7 +51,7 @@ h1 {
 }
 
 h2 {
-  font-size: 1.2em;
+  font-size: 1.4em;
   letter-spacing: -1px;
   margin-bottom: 30px;
   text-align: center;
@@ -178,9 +179,6 @@ padding-right: 50px;
  padding-top: 4px;
   padding-bottom: 4px;
 }
-.table-striped tr{
-
-}
 /* Homepage */
 .hero-unit {
   margin-top: 20px;
@@ -192,7 +190,7 @@ padding-right: 50px;
 }
 /* Admin & User menu */
 .menu {
-  display: inlineblock;
+  display: inline-block;
   float: left;
   margin-right: 80px;
  
@@ -231,4 +229,21 @@ caption {
   font-weight: bolder;
   margin-bottom: 10px;
 }
+}
+
+/* Create catalog form */
+.nav-pills {
+  max-height: 30px;
+  overflow: none;
+}
+.span8{
+   margin-left: -10px;
+}
+.question{
+  .btn {
+    float: left;
+  }
+}
+.catalogs li:last-child {
+  margin-bottom: 30px;
 }
