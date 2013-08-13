@@ -3,7 +3,8 @@ Dailyreport3::Application.routes.draw do
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
-  resources :catalogs, only: [:new, :create, :destroy, :index]
+  resources :catalogs, only: [:new, :create, :destroy, :index, :edit]
+  resources :groups, only: [:new, :create, :destroy, :index, :edit]
   root 'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'

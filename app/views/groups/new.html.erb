@@ -1,0 +1,15 @@
+<% provide(:title, 'Create questions') %>
+<h1>Create questions for daily report</h1>
+
+<div class="row">
+	<div class="span offset5">
+
+		<%= form_for(@group) do |f| %>
+			<%= render 'shared/error_messages', object: f.object %>
+
+			<%= f.label :name %>
+			<%= f.text_field :name %>
+			<%= f.submit "Create questions", class: "btn btn-medium btn-primary" %>
+		<% end %>
+	</div>
+</div>

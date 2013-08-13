@@ -19,6 +19,14 @@ class CatalogsController < ApplicationController
 	end
 
 	def edit
+		 @catalog = Catalog.find(params[:id])
+		 if @catalog.update_attributes(catalog_params)
+ 			#Handle a successfill update
+ 			flash[:success] = "questions updated"
+ 			redirect_to catalogs_path	
+ 		else
+ 			render 'edit'
+ 		end
 	end
 
 	def destroy
