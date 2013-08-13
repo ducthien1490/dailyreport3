@@ -1,0 +1,21 @@
+<% provide(:title,'Personal Information') %>
+	<div class='center'>
+	<table class='table-striped profile'>
+		<caption>Personal Information</caption>
+	<tr>
+		<th>Name</th>
+		<td><%= @user.name %> </td>
+	</tr>
+	<tr>
+		<th>Email</th>
+		<td><%= @user.email %></td>
+	</tr>	
+	<tr>
+		<th>Team</th>
+		<td><%= @user.group_id %></td>
+	</tr>	
+
+	</table>
+	<%= submit_tag 'Edit profile' , class: 'btn btn-medium btn-primary'%>
+	
+	</div>
