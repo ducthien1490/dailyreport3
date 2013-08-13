@@ -3,8 +3,9 @@
   	<li class ='nav-header'>Admin Panel</li>
   	<li class="divider" style="border-top:1px solid #E5E4E3"></li>
   	<li><%= link_to "View list user", users_path %></li>
- 	<li><a>Create group</a></li>
- 	<li><a>View list group</a></li>
- 	<li><%= link_to "View report form", catalogs_path %></li>
+
+	<li><%= link_to "Create group", new_group_path %></li>
+ 	<li><%= link_to "View list group", groups_path%> </li>
+ 	<li><%= link_to "View report form", catalog_path(Group.first.id) %></li>
 </ul>
 </div>

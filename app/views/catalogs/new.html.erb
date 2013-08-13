@@ -13,6 +13,10 @@
 			<%= f.label :content %>
 			<%= f.text_area :content %>
 
+			<%= f.label :required %>
+			<%= f.select :required,([['Yes', 't'], ['No', 'f']]) %>
+			
+
 			<%= f.submit "Create questions", class: "btn btn-medium btn-primary" %>
 		<% end %>
 	</div>
