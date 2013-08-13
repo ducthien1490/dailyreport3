@@ -1,28 +1,41 @@
 <% provide(:title, 'All users') %>
-<h1> All Users </h1>
-<%= will_paginate %>
-<p>
-<ul class="users">
-	
-	<% @users.each do |user| %>
-		<li>
-			<%= link_to user.name, user %>
-			| 
-			<% if current_user.admin? %>
-				<% if user.group_id != nil %>
-					Active
-				<% else %>
-					<%= link_to "Deactive", "#" %>
-					<%= link_to "Assign Group", "#" %>
-				<% end %>
-				<%= link_to "Edit", user %>
-				<%= link_to "Delete", user, method: :delete, data: {confirm: "Are you really want to delete this user?"} %>
-			<% end %>
+<h1> List Users </h1>
+
+<div class ='center'>
+<%= render 'shared/menu' %>
+
+<table class='table table-striped' >
+	<thead>
+	<tr>
+		<th>Status</th>
+		<th>Name</th>
+		<th>Email</th>
+		<th></th>
+		<th></th>
+	</tr>
+	</thead>
+	<tbody>
+		<% @users.each do |user| %>
+			<tr>
+				<td><%if user.group_id != 0 %>
+					<span class="label label-success">Active</span>
+					<% else %>
+					<span class="label label-important">Deactive</span>
+					<% end %>
+				</td>
+				<td><%= user.name %></td>
+				<td><%= user.email %></td>
 			
-		</li>
-	<% end %>
-</ul>
-</p>
+				<td><%= link_to 'Edit','' %></td>
+				<td><%= link_to 'Delete','' %></td>
+			</tr>
+					
+			
+		<% end %>
+	</tbody>
+</table>
 <%= will_paginate %>
+<!--end div user-->
+</div> <!--End div center-->
 
 

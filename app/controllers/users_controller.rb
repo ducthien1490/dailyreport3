@@ -14,14 +14,12 @@ class UsersController < ApplicationController
 
 
   def show
-  	@users = User.paginate(page: params[:page])
-  	@users.toggle!(:active)
-  	sign_in @user
-  	redirect_to root_url
+    @user = User.find(params[:id])
+
   end
 
   def create
-	@user= User.new(save_params)
+	   @user= User.new(save_params)
 
   	if @user.save 
       UserMailer.registration_confirmation(@user).deliver  
@@ -34,11 +32,9 @@ class UsersController < ApplicationController
 
   def edit
   	@user = User.find_by(id: params[:id])
-
-    @user.toggle!(:active) # change attribute active false->true // active User
-
-
   end
+
+
 
   def update   #for admin 
   	@user =User.find(params[:id])
