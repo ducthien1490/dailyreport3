@@ -3,10 +3,12 @@ Dailyreport3::Application.routes.draw do
   
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :catalogs, only: [:new, :create, :destroy, :index]
   root 'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
+  match '/catalog', to: 'catalogs#new',         via: 'get'
   
 
   # You can have the root of your site routed with "root"
