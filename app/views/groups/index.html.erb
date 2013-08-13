@@ -1,0 +1,15 @@
+<% provide(:title,'Group member') %>
+	<div class='center'>
+		<%= render 'shared/menu' %>
+	<table class='table-striped profile'>
+		<caption>Group Detail</caption>
+		<% @groups.each do |group| %>
+		<table class="table table-striped">
+			<%= group.id %>
+			<%= group.name %>
+			<%= link_to " Edit", edit_group_path(group) %>
+			<%= link_to "  Delete", group, method: :delete, data: {confirm: "Are you really want to delete this group?"} %>
+		</table>
+	<% end %>	
+</table>
+	

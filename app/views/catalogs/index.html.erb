@@ -6,14 +6,13 @@
 		<table class="table table-striped">
 			<%= catalog.group_id %>
 			<%= catalog.content %>
-			<%= link_to "Edit", "#" %>
+			<%= link_to "Edit", edit_catalog_path(catalog.id) %>
 			<%= link_to "Delete",catalog, method: :delete, data: {confirm: "Are you really want to delete this user?"} %>
 			
 		</table>
 	<% end %>
-	<button type="button">
-		<%= link_to "Create new question",new_catalog_path%>
-	</button>
+		<%= button_to "Create new question",new_catalog_path, :method => :get, class: 'btn btn-medium btn-primary'%>
+	
 
 </ul>
 
