@@ -7,7 +7,14 @@ class UsersController < ApplicationController
     @password = 'foobar'
   	@user = User.new
   end
-
+  def excel
+     @users = User.all
+     filename = "data_users.xls"
+     respond_to do |format|
+     format.html # index.html.erb
+     format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" }
+    end
+  end
   def index
   	@users = User.paginate(page: params[:page], per_page: "20")
   end
