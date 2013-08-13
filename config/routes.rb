@@ -11,7 +11,7 @@ Dailyreport3::Application.routes.draw do
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/catalog', to: 'catalogs#new',         via: 'get'
   match '/excel',   to:'users#excel',           via:'get' 
-
+ # match '/edit' ,   to: 'users#edit',         via: 'get'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
 

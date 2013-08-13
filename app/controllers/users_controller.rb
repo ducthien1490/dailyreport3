@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:index, :update,:edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
+  #before_action :correct_user,   only: [:edit, :update]
+ # before_action :admin_user,   only: [:edit, :update]
 
   def new
   	#@password = SecureRandom.hex(10)
@@ -65,7 +66,7 @@ class UsersController < ApplicationController
 
   private
   	def user_params
-  		params.require(:user).permit(:name, :email, :group_id , :manager_group, :active)
+  		params.require(:user).permit( :group_id , :manager_group, )
   	end
 
   	def save_params
@@ -76,8 +77,12 @@ class UsersController < ApplicationController
       redirect_to signin_url, notice: "Please sign in." unless signed_in?
     end
     
+    def admin_user
+       redirect_to(root_url)unless current_user.admin?
+    end
     def correct_user
       @user = User.find(params[:id])
       redirect_to(root_url) unless current_user?(@user)
     end
+ 
 end
