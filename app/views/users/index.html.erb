@@ -18,7 +18,9 @@
 		<% @users.each do |user| %>
 			<tr>
 				<td><%if user.group_id != 0 %>
-					<span class="label label-success">Active</span>
+					<span class="label label-success">
+						<%= Group.find_by(id:user.group_id).name %>
+					</span>
 					<% else %>
 					<span class="label label-important">Deactive</span>
 					<% end %>
