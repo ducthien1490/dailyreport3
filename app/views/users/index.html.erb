@@ -17,8 +17,7 @@
 	<tbody>
 		<% @users.each do |user| %>
 			<tr>
-				<td><%if user.group_id != 0 %>
-
+				<td><%if user.group_id !=0 %>
 					<span class="label label-success"><%=Group.find_by(id:user.group_id).name%></span>
                     
 					<% else %>
@@ -27,8 +26,13 @@
 				</td>
 				<td><%= user.name %></td>
 				<td><%= user.email %></td>
-				<td><%= link_to 'Edit',edit_user_path(user) %></td>
-				<td><%= link_to 'Delete',user, method: :delete, data: {confirm: "Are you really want to delete this user?"} %></td>
+				<% if user.admin? %>
+					<td></td>
+					<td></td>
+				<% else %>
+					<td><%= link_to 'Edit',edit_user_path(user) %></td>
+					<td><%= link_to 'Delete',user, method: :delete, data: {confirm: "Are you really want to delete this user?"} %></td>
+				<%end%>
 			</tr>								
 		<% end %>
 	</tbody>

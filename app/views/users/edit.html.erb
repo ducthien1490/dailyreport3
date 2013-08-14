@@ -3,9 +3,7 @@
 <div class="center">
   <%=render 'shared/menu'%>
   <div class="span6 offset1">
-   
-
-    <%= form_for(@user) do |f| %>
+     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
          
       <%= f.label :manager_group %>
@@ -14,23 +12,7 @@
 
       <%= f.label :group_id %>
       <%=f.select :group_id,Group.all.collect {|g| [ g.name, g.id ] }%>
-     
-      <!--
-      <select class="option_group">
-          <% Group.all.each do |g|%>
-          <option><%=g.name%></option>
-          <%end%>
-      </select>-->
-      
-      
-  
-      
-     
       <%= f.submit "Save changes", class: "btn btn-medium btn-primary" %>
-
     <% end %>
-
-    
   </div>
-</div>
 </div>
