@@ -1,38 +1,18 @@
 <%= provide(:title, "Edit User")%>
-<h2>Update profile</h2>
-<div class ='center'>
-<%= render 'shared/menu' %>
-<div class="row">
+<h2>Update your profile</h2>
+<div class="center">
+  <%=render 'shared/menu'%>
   <div class="span6 offset1">
-
-
-    <%= form_for(@user) do |f| %>
+     <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-           <%= f.label :email%>
-      <%= f.text_field :email%>
+         
       <%= f.label :manager_group %>
       <%= f.select :manager_group,([['Yes', 't'], ['No', 'f']]) %>
       
 
       <%= f.label :group_id %>
       <%=f.select :group_id,Group.all.collect {|g| [ g.name, g.id ] }%>
-     
-      <!--
-      <select class="option_group">
-          <% Group.all.each do |g|%>
-          <option><%=g.name%></option>
-          <%end%>
-      </select>-->
-      
-      
-  
-      
-     
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-
+      <%= f.submit "Save changes", class: "btn btn-medium btn-primary" %>
     <% end %>
-
-    
   </div>
-</div>
 </div>
