@@ -30,7 +30,7 @@ textarea {
 }
 
 .center {
-  text-align: center;
+  
   min-height: 600px;
 }
 
@@ -249,7 +249,19 @@ caption {
 #catalog_required {
   min-height: 40px;
 }
+#user_manager_group
+{
+min-height:40px;
+}
+.option_group{
+  min-height:40px;
+}
 .content {
 
   text-align: left;
+}
+#user_group_id,#catalog_group_id
+{
+    min-height:40px;
+
 }
