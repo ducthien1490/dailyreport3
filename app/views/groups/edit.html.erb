@@ -1,20 +1,18 @@
 <% provide(:title, "Edit group") %>
-<h1> Edit the group </h1>
-
+<h2> Edit the group </h2>
 <div class ='center'>
 <%= render 'shared/menu' %>
-<div class="row" >
-	<div class="span6 offset3">
+	<div class="span5 offset1">
 		<%= form_for(@group) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
-			<%= f.label :name %>
+			<%= f.label :group_name %>
 			<%= f.text_field :name %>
 
-			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+			<%= f.submit "Save changes", class: "btn btn-medium btn-primary" %>
 		<% end %>
 	</div>
 </div>
-</div>
+
 
 

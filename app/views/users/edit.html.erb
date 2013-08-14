@@ -1,11 +1,10 @@
-<<<<<<< HEAD
-dklajsfljfs
-=======
-<%= provide(:title, "Edit User")%>
-<h1>Update your profile</h1>
 
-<div class="row">
-  <div class="span6 offset3">
+<%= provide(:title, "Edit User")%>
+<h2>Update your profile</h2>
+
+<div class='center'>
+  <%= render 'shared/menu' %>
+  <div class="span6 offset">
 
 
     <%= form_for(@user) do |f| %>
@@ -18,23 +17,8 @@ dklajsfljfs
 
       <%= f.label :group_id %>
       <%=f.select :group_id,Group.all.collect {|g| [ g.name, g.id ] }%>
-     
-      <!--
-      <select class="option_group">
-          <% Group.all.each do |g|%>
-          <option><%=g.name%></option>
-          <%end%>
-      </select>-->
-      
-      
-  
-      
-     
       <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
 
     <% end %>
-
-    
   </div>
 </div>
->>>>>>> 7a5de76aaaac038b65d64dbbd1b3cd4dca055526
