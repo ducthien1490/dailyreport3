@@ -40,12 +40,12 @@ ActiveRecord::Schema.define(version: 20130813084243) do
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.boolean  "manager_group",   default: false
     t.boolean  "admin",           default: false
     t.boolean  "active",          default: false
     t.integer  "group_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "password_digest"
     t.string   "remember_token"
   end
