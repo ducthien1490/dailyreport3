@@ -1,15 +1,17 @@
-<% provide(:title, 'Create questions') %>
-<h1>Create new group</h1>
+<% provide(:title, 'Create new group') %>
+<h2>Create new group</h2>
+<div class='center'>
+	<%= render 'shared/menu' %>
 
 <div class="row">
-	<div class="span offset5">
-
+	<div class="span offset2">
 		<%= form_for(@group) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
-
 			<%= f.label :name %>
 			<%= f.text_field :name %>
-			<%= f.submit "Create questions", class: "btn btn-medium btn-primary" %>
+			<%= f.submit "Create group", class: "btn btn-medium btn-primary" %>
 		<% end %>
 	</div>
 </div>
+</div>
+
