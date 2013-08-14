@@ -8,6 +8,8 @@ class GroupsController < ApplicationController
 		if @group.save
 			flash[:success] = "A new group have just added"
 			redirect_to groups_path
+		else
+			render 'new'
 		end
 	end
 
@@ -22,7 +24,7 @@ class GroupsController < ApplicationController
 	def update
 		#binding.pry
 		@group = Group.find(params[:id])
-		if @group.update_attributes!(group_params)
+		if @group.update_attributes(group_params)
  			#Handle a successfill update
  			flash[:success] = "Group updated"
  			redirect_to groups_path
