@@ -1,27 +1,30 @@
-<% provide(:title,'Group member') %>
+<% provide(:title,'Group Details') %>
+<h2>Group Details</h2>
 <div class='center'>
 	<%= render 'shared/menu' %>
-	<table class='table table-striped '>
-		<caption>Group Detail</caption>
-	<thead>
-	<tr>
-		<th>Group ID</th>
-		<th>Name</th>
-		<th></th>
-		<th></th>
-	</tr>
-	</thead>
-	<tbody>
-		<% @groups.each do |group| %>
-		<tr>
-			<td><%= group.id %></td>
-			<td><%= group.name%></td>
-			<td><%= link_to " Edit", edit_group_path(group) %></td>
-			<td><%= link_to "  Delete", group, method: :delete, data: {confirm: "Are you really want to delete this group?"} %></td>
-		</tr>
-		<% end %>
-	</tbody>
-</table>
+	<div class=' offset5'>
+	<table class='table table-striped'>
+		<thead>
+			<tr>
+				<th>Group ID</th>
+				<th>Name</th>
+				<th></th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<% @groups.each do |group| %>
+			<tr>
+				<td><%= group.id %></td>
+				<td><%= group.name%></td>
+				<td><%= link_to " Edit", edit_group_path(group) %></td>
+				<td><%= link_to "  Delete", group, method: :delete, data: {confirm: "Are you really want to delete this group?"} %></td>
+			
+			</tr>
+			<% end %>
+		</tbody>
+	</table>
+	</div>
 </div>
 
 	

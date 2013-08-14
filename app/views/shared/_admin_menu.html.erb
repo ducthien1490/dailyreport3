@@ -1,11 +1,13 @@
 <div class = 'menu'>
 	<ul class="nav nav-pills nav-stacked">
   	<li class ='nav-header'>Admin Panel</li>
-  	<li class="divider" style="border-top:1px solid #E5E4E3"></li>
+  	<li class="divider" style="border-top:1px solid #CCD2D4"></li>
   	<li><%= link_to "View list user", users_path %></li>
-
+  	<li class="divider" style="border-top:1px solid #CCD2D4"></li>
 	<li><%= link_to "Create group", new_group_path %></li>
  	<li><%= link_to "View list group", groups_path%> </li>
+ 	<li class="divider" style="border-top:1px solid #CCD2D4"></li>
+ 	<li><%= link_to "Create question",new_catalog_path %></li>
  	<li><%= link_to "View report form", catalog_path(Group.first.id) %></li>
 </ul>
 </div>
