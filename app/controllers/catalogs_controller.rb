@@ -15,7 +15,7 @@ class CatalogsController < ApplicationController
 	end
 
 	def index
-		@catalogs = Catalog.paginate(page: params[:page], per_page: "8")
+		@catalogs = Catalog.paginate(page: params[:page], per_page: "6")
 	end
 
 	def show
