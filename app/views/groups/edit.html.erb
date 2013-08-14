@@ -1,6 +1,8 @@
 <% provide(:title, "Edit group") %>
 <h1> Edit the group </h1>
 
+<div class ='center'>
+<%= render 'shared/menu' %>
 <div class="row" >
 	<div class="span6 offset3">
 		<%= form_for(@group) do |f| %>
@@ -13,4 +15,6 @@
 		<% end %>
 	</div>
 </div>
+</div>
+
 

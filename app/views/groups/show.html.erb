@@ -1,0 +1,16 @@
+<% provide(:title,'Group Information') %>
+<div class ='center'>
+<%= render 'shared/menu' %>
+	<div class='center'>
+	<table class='table-striped profile'>
+		<caption>Personal Information</caption>
+	<tr>
+		<th>Name</th>
+		<td><%= @group.name %> </td>
+	</tr>
+
+	</table>
+	<%= button_tag 'Edit Group' , class: 'btn btn-medium btn-primary'%>
+	
+	</div>
+</div>
