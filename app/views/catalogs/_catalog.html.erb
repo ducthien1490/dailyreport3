@@ -1,5 +1,8 @@
 <li>
   <span class="content"><%= catalog.content %></span>&nbsp
-  <span><%= link_to "Edit", edit_catalog_path(catalog) %></span>&nbsp
-  <span><%= link_to "Delete",catalog, method: :delete, data: {confirm: "Are you really want to delete this user?"} %></span>
+</br>
+  	<span style="float:left"><%= link_to "Edit ",edit_catalog_path(catalog) %> &nbsp
+  		<%= link_to " Delete",catalog, method: :delete, data: {confirm: "Are you really want to delete this user?"} %>
+	</span>
+</br>
 </li>

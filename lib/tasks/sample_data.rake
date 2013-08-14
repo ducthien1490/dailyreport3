@@ -6,12 +6,42 @@ namespace :db do
 end
 
 def make_users
-	firstuser = User.create!(name: "Duc Thien", email: "to.duc.thien@framgia.com", password:"12345678",password_confirmation: "12345678", group_id: "1")
-	50.times do |n|
+	firstuser = User.create!(name: "Chuyen", email: "vu.van.chuyen@framgia.com", password:"12345678",password_confirmation: "12345678", group_id: "1")
+	5.times do |n|
 		name = Faker::Name.name
-		email = "example.#{n+1}@framgia.com"
+		email = "example#{n+1}@framgia.com"
 		password ="123456"
 		group_id ="1"
 		User.create!(name: name, email: email, password: password,password_confirmation: password,group_id: group_id)
 	end
+    5.times do |n|
+		name = Faker::Name.name
+		email = "example-#{n+1}@framgia.com"
+		password ="123456"
+		group_id ="2"
+		User.create!(name: name, email: email, password: password,password_confirmation: password,group_id: group_id)
+	end
+
+	5.times do |n|
+		name = Faker::Name.name
+		email = "example--#{n+1}@framgia.com"
+		password ="123456"
+		group_id ="3"
+		User.create!(name: name, email: email, password: password,password_confirmation: password,group_id: group_id)
+	end
+	5.times do |n|
+		name = Faker::Name.name
+		email = "example---#{n+1}@framgia.com"
+		password ="123456"
+		group_id ="4"
+		User.create!(name: name, email: email, password: password,password_confirmation: password,group_id: group_id)
+	end
+	5.times do |n|
+		name = Faker::Name.name
+		email = "example----#{n+1}@framgia.com"
+		password ="123456"
+		group_id =""
+		User.create!(name: name, email: email, password: password,password_confirmation: password,group_id: group_id)
+	end
+    
 end

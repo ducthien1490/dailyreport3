@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:index, :update,:edit, :update]
-  before_action :correct_user,   only: [:edit, :update]
+  before_action :no_correct_user,   only: [:edit, :update]
+  before_action :admin_user,   only: [:edit, :update]
 
   def new
   	#@password = SecureRandom.hex(10)
@@ -38,17 +39,18 @@ class UsersController < ApplicationController
   end
 
   def edit
-  	@user = User.find_by(id: params[:id])
+    @user = User.find(params[:id])
   end
 
 
 
   def update   #for admin 
+     
   	@user =User.find(params[:id])
   	if @user.update_attributes(user_params)
   		flash[:success]= "Profile updated"
-  		sign_in @user
-  		redirect_to @user
+  		#sign_in @user
+  		redirect_to root_url
   	else
   		render 'edit'
   	end
@@ -65,7 +67,7 @@ class UsersController < ApplicationController
 
   private
   	def user_params
-  		params.require(:user).permit(:name, :email, :group_id , :manager_group, :active)
+  		params.require(:user).permit( :email , :group_id , :manager_group)
   	end
 
   	def save_params
@@ -76,8 +78,14 @@ class UsersController < ApplicationController
       redirect_to signin_url, notice: "Please sign in." unless signed_in?
     end
     
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) if current_user?(@user)
+    def admin_user
+       redirect_to(root_url)unless current_user.admin?
     end
+    def no_correct_user
+     # binding.pry
+      @user = User.find(params[:id])
+      redirect_to(root_url) if current_user?(@user) # neu khong fai la admin thy quay ve root_url .
+      # neu la admin thy vao trang dang nhap
+    end
+ 
 end

@@ -15,8 +15,14 @@ class CatalogsController < ApplicationController
 	end
 
 	def index
-		@catalogs = Catalog.all
+		@catalogs = Catalog.paginate(page: params[:page], per_page: "8")
 	end
+
+	def show
+		@group = Group.find(params[:id])
+		@catalogs = Catalog.all(:conditions => {group_id: @group.id})
+	end
+
 
 	def edit
 		 @catalog = Catalog.find(params[:id])
@@ -43,7 +49,7 @@ class CatalogsController < ApplicationController
 
 	private
 		def catalog_params
-			params.require(:catalog).permit(:content,:group_id)
+			params.require(:catalog).permit(:content,:group_id,:required)
 		end
 
 end

@@ -2,18 +2,23 @@
 <h2> All Questions</h2>
 <div class='center'>
 	<%=render 'shared/menu' %>
-		
 		<ul class="nav nav-pills">
-			    <li class="active">
-			    <a href="#">Group1</a>
-			    </li>
-			    <li><a href="#">Group2</a></li>
-			    <li><a href="#">Group3</a></li>
+			<% Group.all.each do |g| %>	
+			    <li><%= link_to g.name,catalog_path(g.id) %></li>
+				<li class="divider-vertical"></li>			
+		    <% end %>
+		    <li><%= link_to "All", catalogs_path %></li>
 		</ul>
 		<div class="span8 question">	
+				
 			<ol class="catalogs">
-        		<%= render @catalogs %>
+				<% if @catalogs.nil? %>
+					No question valid for this group.
+				<% else %>
+        			<%= render @catalogs %>
+        		<%end%>
       		</ol>
+      		<%= will_paginate %>
 				<%= button_to "Create new question",new_catalog_path,
 				:method => :get, class: 'btn btn-medium btn-primary'%>
 		</div>

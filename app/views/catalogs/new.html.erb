@@ -8,10 +8,16 @@
 			<%= render 'shared/error_messages', object: f.object %>
 
 			<%= f.label 'Question for group' %>
-			<%= f.text_field :group_id %>
+			
+      		<%=f.select :group_id,Group.all.collect {|g| [ g.name, g.id ] }%>
 
+           
 			<%= f.label :content %>
 			<%= f.text_area :content %>
+
+			<%= f.label :required %>
+			<%= f.select :required,([['Yes', 't'], ['No', 'f']]) %>
+			
 
 			<%= f.submit "Create questions", class: "btn btn-medium btn-primary" %>
 		<% end %>
