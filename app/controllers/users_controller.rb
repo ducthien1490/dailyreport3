@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     @password = 'foobar'
   	@user = User.new
   end
+  
   def excel
      @users = User.all
      filename = "data_users.xls"
