@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130813084243) do
+ActiveRecord::Schema.define(version: 20130814064642) do
 
   create_table "answers", force: true do |t|
     t.integer  "catalog_id"
@@ -45,9 +45,9 @@ ActiveRecord::Schema.define(version: 20130813084243) do
     t.boolean  "manager_group",   default: false
     t.boolean  "admin",           default: false
     t.boolean  "active",          default: false
-    t.integer  "group_id"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.integer  "group_id",        default: 0
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"

@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:index, :update,:edit, :update]
-  before_action :no_correct_user,   only: [:edit, :update]
-  before_action :admin_user,   only: [:edit, :update]
+  before_action :no_correct_user,   only: [:show,:edit, :update]
+  before_action :admin_user,   only: [:index,:show ,:edit, :update]
 
   def new
   	#@password = SecureRandom.hex(10)
@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   def update   #for admin 
      
   	@user =User.find(params[:id])
-  	if @user.update_attributes(user_params)
+  	if @user.update_attributes!(user_params)
   		flash[:success]= "Profile updated"
   		#sign_in @user
   		redirect_to root_url
@@ -67,7 +67,7 @@ class UsersController < ApplicationController
 
   private
   	def user_params
-  		params.require(:user).permit( :email , :group_id , :manager_group)
+  		params.require(:user).permit(:group_id ,:manager_group)
   	end
 
   	def save_params
