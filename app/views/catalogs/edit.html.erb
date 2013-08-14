@@ -1,13 +1,14 @@
 <% provide(:title, "Edit question") %>
-<h1> Update the question </h1>
-
+<h2> Update the question </h2>
+<div class ='center'>
+<%= render 'shared/menu' %>
 <div class="row" >
-	<div class="span6 offset3">
+	<div class="span6 offset1">
 		<%= form_for(@catalog) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
 
 			<%= f.label :group_id %>
-			<%= f.text_field :group_id %>
+      		<%=f.select :group_id,Group.all.collect {|g| [ g.name, g.id ] }%>
 
 			<%= f.label :content %>
 			<%= f.text_area :content %>
@@ -15,5 +16,6 @@
 			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
 		<% end %>
 	</div>
+</div>
 </div>
 
