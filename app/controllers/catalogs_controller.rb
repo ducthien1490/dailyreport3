@@ -15,7 +15,7 @@ class CatalogsController < ApplicationController
 	end
 
 	def index
-		@catalogs = Catalog.paginate(page: params[:page], per_page: "8")
+		@catalogs = Catalog.paginate(page: params[:page], per_page: "6")
 	end
 
 	def show
@@ -26,14 +26,19 @@ class CatalogsController < ApplicationController
 
 	def edit
 		 @catalog = Catalog.find(params[:id])
-		 if @catalog.update_attributes(catalog_params)
+	end
+
+	def update
+		@catalog = Catalog.find(params[:id])
+		if @catalog.update_attributes(catalog_params)
  			#Handle a successfill update
  			flash[:success] = "questions updated"
  			redirect_to catalogs_path	
  		else
  			render 'edit'
  		end
-	end
+ 	end
+
 
 	def destroy
 	  	@catalog = Catalog.find(params[:id])
@@ -46,8 +51,6 @@ class CatalogsController < ApplicationController
 		def catalog_params
 			params.require(:catalog).permit(:content,:group_id,:required)
 		end
-
-
 
 end
 
