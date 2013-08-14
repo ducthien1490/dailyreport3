@@ -1,11 +1,10 @@
 <%= provide(:title, "Edit User")%>
-<h2>Update your profile</h2>
+<h2>Update user profile of <%= @user.name%></h2>
 <div class="center">
   <%=render 'shared/menu'%>
   <div class="span6 offset1">
      <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-         
       <%= f.label :manager_group %>
       <%= f.select :manager_group,([['Yes', 't'], ['No', 'f']]) %>
       
