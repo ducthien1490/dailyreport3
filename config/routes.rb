@@ -5,14 +5,19 @@ Dailyreport3::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :catalogs#, only: [:new, :create, :destroy, :index, :edit]
   resources :groups #, only: [:new, :create, :destroy, :index, :edit]
+<<<<<<< HEAD
   resources :answers
+=======
+  resources :answers, only: [:new, :create, :update]
+  resources :managers
+>>>>>>> f428da7a4437242960031039cdd0d2b2d8ff776d
   root 'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
   match '/signout', to: 'sessions#destroy',     via: 'delete'
   match '/catalog', to: 'catalogs#new',         via: 'get'
   match '/excel',   to: 'users#excel',          via:'get'
-  match '/managers',to: 'managers#index',       via:'get' 
+  match '/managers/:id/show',to: 'managers#show',       via:'get' 
 
  # match '/edit' ,   to: 'users#edit',         via: 'get'
   # You can have the root of your site routed with "root"

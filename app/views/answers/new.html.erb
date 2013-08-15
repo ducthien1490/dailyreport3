@@ -3,13 +3,16 @@
 <div class='center'>
 	<%= render'shared/menu' %>
 	<div class='span7 answer'>
+
         <%= form_for (@answer) do |answer_form|%>
-        	<%(@answer.catalog_id).each do |catalog|%>
-        		<%answer_form.fields_for |catalog|, index: catalog
-        		do |answer_form| %>
-        			<%=answer_form.text_area :content%>
-        		<% end%>
-        	<% end%>
-        <% end%>		
+                <%Catalog.where(group_id==current_user.group.id and id==answer_form.id).each do |c| %>
+                <%
+                 c.content
+                %>
+
+                <%=answer_form.text_area :content%>
+        	<%=answer_form.submit "Create questions", class: "btn btn-medium btn-primary"%>	
+                <%end%>
+        	<% end%>		
 	</div>
 </div>
