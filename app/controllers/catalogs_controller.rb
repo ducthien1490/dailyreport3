@@ -1,4 +1,5 @@
 class CatalogsController < ApplicationController
+	#before_action :admin_user,   only: [:index,:show ,:edit, :update, :destroy]
 	def new
 		@catalog = Catalog.new
 	end

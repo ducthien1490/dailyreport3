@@ -233,13 +233,17 @@ caption {
 
 /* Create catalog form */
 .nav-pills {
+  display: table;
   max-height: 30px;
   overflow: none;
 }
+
 .span8{
    margin-left: -10px;
 }
-
+.catalogs {
+  margin-top: 20px;
+}
 .catalogs li:last-child {
   margin-bottom: 30px;
 }
