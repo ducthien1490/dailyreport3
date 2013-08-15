@@ -1,0 +1,40 @@
+<% provide(:title, 'Report of Users') %>
+<h2> Report of
+	<%= User.find_by(id: current_user.id).name %>
+</h2>
+<div class ='center'>
+<%= render 'shared/menu' %>
+<div class='offset4'>
+<table class='table table-striped' >
+	<thead>
+	<tr>
+		<th>The Date</th>
+		<th>Question</th>
+		<th>Answer</th>
+
+
+
+   
+
+    <input type="text" name ="time" value="02/16/13" data-date-format="dd/mm/yy" id="dp2">
+    <script>
+    $('#dp2').datepicker();
+    </script>
+
+    
+	</thead>
+	<tbody>
+		<% @answers.each do |answer|%>
+			<tr>
+
+				<td><%= answer.updated_at %></td>
+				<td><%= Catalog.find_by(id: answer.catalog_id).content %></td>
+				<td><%= answer.content %></td>
+				
+			</tr>								
+		<% end %>
+	</tbody>
+</table>
+</div>
+<!--end div user-->
+</div> <!--End div center-->
