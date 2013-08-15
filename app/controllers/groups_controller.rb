@@ -1,6 +1,5 @@
 class GroupsController < ApplicationController
 	 before_action :admin_user,   only: [:index,:show ,:edit, :update]
-
 	def new
 		@group = Group.new
 	end

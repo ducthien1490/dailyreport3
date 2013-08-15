@@ -1,6 +1,10 @@
 
 		<% if current_user.admin? %>
 			<%= render 'shared/admin_menu' %>
-		<% else %>
+		<% end %>
+		<% if current_user.manager_group? %>
+			<%= render 'shared/manager_group' %>
+		<% end %>
+		<% if (current_user.admin != true)&&(current_user.manager_group != true) %>
 			<%= render 'shared/user_menu' %>
 		<% end %>
