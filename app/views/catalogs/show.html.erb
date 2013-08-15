@@ -4,7 +4,8 @@
 	<%=render 'shared/menu' %>
 	<div class="span8 offset4">
 		<ul class="nav nav-pills">
-			<% Group.all.each do |g| %>	
+			
+			<% Group.where('id>0').each do |g| %>	
 			    <li><%= link_to g.name,catalog_path(g.id)  %></li>
 				<li class="divider-vertical"></li>			
 		    <% end %>

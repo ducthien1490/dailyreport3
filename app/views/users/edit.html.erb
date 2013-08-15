@@ -5,7 +5,11 @@
   <div class="span6 offset1">
      <%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
-         
+      
+      <%= f.label :email %>
+      <%= @user.email%>
+    
+
       <%= f.label :manager_group %>
       <%= f.select :manager_group,([['Yes', 't'], ['No', 'f']]) %>
       

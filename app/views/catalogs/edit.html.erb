@@ -6,9 +6,9 @@
 	<div class="span6 offset1">
 		<%= form_for(@catalog) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
-
+           
 			<%= f.label :group_id %>
-			
+
       		<%=f.select :group_id,Group.all.collect {|g| [ (g).name, (g).id ] }%>
 
 			<%= f.label :content %>
