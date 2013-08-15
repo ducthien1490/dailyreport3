@@ -4,9 +4,9 @@
 	<%=render 'shared/menu' %>
 	<div class="span8 offset4">
 		<ul class="nav nav-pills">
-			
 			<% Group.where('id>0').each do |g| %>	
-			    <li><%= link_to g.name,catalog_path(g.id)  %></li>
+			    <li class="<%='active' if current_page?(catalog_path(g.id)) %>">
+			    	<%= link_to g.name,catalog_path(g.id)  %></li>
 				<li class="divider-vertical"></li>			
 		    <% end %>
 		    <li><%= link_to "All", catalogs_path %></li>
