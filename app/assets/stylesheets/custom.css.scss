@@ -26,12 +26,13 @@ section {
 
 textarea {
   resize: vertical;
-  min-height: 170px;
+  min-height: 130px;
 }
 
 .center {
-  padding-bottom: 150px;
-  min-height: 600px;
+  padding-bottom: 50px;
+  height: 400px;
+  display: table;
 }
 
 .center h1 {
@@ -111,7 +112,10 @@ footer {
 }
 
 /* miscellaneous */
-
+.divider {
+  border-top:1.5px solid #CCD2D4;
+  list-style:none;
+}
 .debug_dump {
   clear: both;
   float: left;
@@ -119,6 +123,13 @@ footer {
   margin-top: 45px;
   @include box_sizing;
 }
+/* homepage */
+
+.hero-unit {
+  text-align: center;
+  display: block;
+}
+
 
 /* sidebar */
 
@@ -236,6 +247,7 @@ caption {
   display: table;
   max-height: 30px;
   overflow: none;
+  display: table;
 }
 
 .span8{
@@ -266,3 +278,4 @@ min-height:40px;
     min-height:40px;
 
 }
+/* Daily report form */

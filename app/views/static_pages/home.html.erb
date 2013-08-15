@@ -1,16 +1,14 @@
 <% provide(:title, 'Home') %>
 <% if signed_in? %>
 	<div class= 'center'>
-		<h2>Welcome, <%= current_user.name %></h2>
+		<h2 class='offset6'>Welcome, <%= current_user.name %></h2>
 		<%= render 'shared/menu' %>
 	</div>
 <% else %>	
 
 <div class=" center hero-unit">
 	<h1> Daily Report System </h1>
-	<h2> Welcome Framgia Member</h2>
-	<div class="offset6">
-	<%= link_to "Sign up now !", signup_path, class: "btn btn-large btn-primary" %>	
-	</div>
+	<h2> Welcome Framgia Member</h2>	
+	<%= link_to "Sign up now !", signup_path, class: "btn btn-large btn-primary"%>	
 </div>
 <%end %>	

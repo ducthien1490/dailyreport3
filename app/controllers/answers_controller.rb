@@ -6,11 +6,11 @@ class AnswersController < ApplicationController
 	def new
 		@answer = Answer.new
 	end
-
 	def create
-		@answer = current_user.answer.build(answer_params)
+		@answer = Answer.new(answer_params)
 		if @answer.save
-			#somthing to do
+			flash[:success]= "Daily report saved!"
+			redirect_to root_url
 		else
 			render 'new'
 		end
@@ -19,4 +19,13 @@ class AnswersController < ApplicationController
 
 	def destroy
 	end
-end
+
+
+	private
+		def answer_params
+			params.require(:answer).permit(:catalog_id, :content, :user_id)
+		end
+end	
+
+
+
