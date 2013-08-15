@@ -19,7 +19,7 @@
 				<% if user.manager_group? %>
 					<td></td>
 				<% else %>
-					<td><%= link_to 'Manage Users Report',"#" %></td>
+					<td><%= link_to 'Manage Users Report',manager_path(user) %></td>
 				<%end%>
 			</tr>								
 		<% end %>

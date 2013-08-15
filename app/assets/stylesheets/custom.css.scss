@@ -184,14 +184,20 @@ input {
 }
 .table-striped  {
  white-space: nowrap;
- width:auto;
+ width:900px;
  margin-bottom: 40px;
+ table-layout: fixed;
+
 }
-.table-striped td {
+.table-striped td{
+overflow: hidden;
 padding-right: 50px;
- padding-top: 4px;
-  padding-bottom: 4px;
+padding-top: 4px;
+padding-bottom: 4px;
 }
+
+
+
 /* Homepage */
 .hero-unit {
   margin-top: 20px;
