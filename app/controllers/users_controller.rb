@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   	if @user.update_attributes!(user_params)
   		flash[:success]= "Profile updated"
   		#sign_in @user
-  		redirect_to root_url
+  		redirect_to users_path
   	else
   		render 'edit'
   	end
@@ -82,6 +82,7 @@ class UsersController < ApplicationController
     def admin_user
        redirect_to(root_url)unless current_user.admin?
     end
+    
     def no_correct_user
      # binding.pry
       @user = User.find(params[:id])
