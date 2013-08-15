@@ -5,7 +5,7 @@ Dailyreport3::Application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :catalogs#, only: [:new, :create, :destroy, :index, :edit]
   resources :groups #, only: [:new, :create, :destroy, :index, :edit]
-  resources :answers, only: [:new, :create, :update]
+  resources :answers
   root 'static_pages#home'
   match '/signup',  to: 'users#new',            via: 'get'
   match '/signin',  to: 'sessions#new',         via: 'get'
