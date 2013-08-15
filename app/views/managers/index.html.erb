@@ -16,11 +16,7 @@
 			<tr>
 				<td><%= user.name %></td>
 				<td><%= user.email %></td>
-				<% if user.manager_group? %>
-					<td></td>
-				<% else %>
-					<td><%= link_to 'Manage Users Report',manager_path(user) %></td>
-				<%end%>
+				<td><%= link_to 'Manage Users Report',manager_path(user) %></td>
 			</tr>								
 		<% end %>
 	</tbody>
