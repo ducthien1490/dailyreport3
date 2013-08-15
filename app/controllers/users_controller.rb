@@ -62,7 +62,11 @@ class UsersController < ApplicationController
   	@user.destroy
     redirect_to users_path
   end
+   #///////////////////////////////report User
+   def report_user
+     @answers = Answer.where(user_id: current_user.id) 
 
+   end
 
 
   private

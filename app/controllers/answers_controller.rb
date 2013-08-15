@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
 	end
 	def create
 		@answer = Answer.new(answer_params)
-		if @answer.save
+		if@answer.save
 			flash[:success]= "Daily report saved!"
 			redirect_to root_url
 		else
@@ -23,7 +23,7 @@ class AnswersController < ApplicationController
 
 	private
 		def answer_params
-			params.require(:answer).permit(:catalog_id, :content, :user_id)
+			params.require(:answer).permit(:content)
 		end
 end	
 
