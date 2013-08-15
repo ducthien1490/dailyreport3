@@ -28,6 +28,8 @@ GEM
     arel (4.0.0)
     atomic (1.1.12)
     bcrypt-ruby (3.0.0)
+    bootstrap-datepicker-rails (1.1.1.6)
+      railties (>= 3.0)
     bootstrap-sass (2.3.2.0)
       sass (~> 3.2)
     bootstrap-will_paginate (0.0.9)
@@ -164,6 +166,7 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby (= 3.0.0)
+  bootstrap-datepicker-rails
   bootstrap-sass (= 2.3.2.0)
   bootstrap-will_paginate (= 0.0.9)
   capybara (= 2.1.0)
