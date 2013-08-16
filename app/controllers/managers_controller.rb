@@ -5,8 +5,17 @@ class ManagersController < ApplicationController
 	end
 
 	def show
-		@answers = Answer.where(user_id: params[:id])	
+		@time1=params[:time1]
+		@time2=params[:time2]
+		#@date1=DateTime.parse(@time1).strftime('%a %b %d %H:%M:%S %Z %Y')
+		#@date2=DateTime.parse(@time2).strftime('%a %b %d %H:%M:%S %Z %Y')
+		@answers = Answer.where(user_id: params[:id])
+		
+
+
 	end
+
+
 
 	def new
 	end

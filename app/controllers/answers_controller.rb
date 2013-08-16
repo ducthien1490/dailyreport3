@@ -47,11 +47,7 @@ class AnswersController < ApplicationController
 
 	private
 		def answer_params
-<<<<<<< HEAD
 			params.require(:answer).permit(:user_id,:content)
-=======
-			params.require(:answer).permit(:content)
->>>>>>> 05e9835384c3d7d9c40cf5106efcc9db25205078
 		end
 end	
 
