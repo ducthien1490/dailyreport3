@@ -3,16 +3,6 @@
 <div class='center'>
 	<%= render'shared/menu' %>
 	<div class='span7 answer'>
-        <script type="text/javascript">
-
-             $('textarea').change(function() {
-                var content = $(this).val();
-                var id = $(this).attr('id')
-                $("#"+id).submit();        
-             });
-
-        </script>
-
 		<% @catalogs.each do |catalog| %>
 			<%= catalog.content %>
 			<%= render 'answer' , catalog: catalog %>

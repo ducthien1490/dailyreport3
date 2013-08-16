@@ -16,10 +16,6 @@ class AnswersController < ApplicationController
 		@answer = catalog.answers.new(answer_params)
 		if @answer.save
 			flash[:success] = "Daily report saved"
-			respond_to do |format|
-      		format.html { redirect_to new_answer_path }
-      		format.js
-    		end
 		else
 			render 'new'
 		end
@@ -30,8 +26,8 @@ class AnswersController < ApplicationController
 		@answer = answer(catalog)
 		if @answer.update_atributes(answer_params)
 			respond_to do |format|
-      		format.html { redirect_to new_answer_path }
-      		format.js
+      		format.html { redirect_to answer_path }
+      		format.js {render :text => "alert('Answer updated')"}
     		end
     	else 
     		render 'new'
@@ -47,11 +43,7 @@ class AnswersController < ApplicationController
 
 	private
 		def answer_params
-<<<<<<< HEAD
 			params.require(:answer).permit(:user_id,:content)
-=======
-			params.require(:answer).permit(:content)
->>>>>>> 05e9835384c3d7d9c40cf5106efcc9db25205078
 		end
 end	
 
