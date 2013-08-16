@@ -3,16 +3,9 @@
 <div class='center'>
 	<%= render'shared/menu' %>
 	<div class='span7 answer'>
-
-        <%= form_for (@answer) do |answer_form|%>
-                <%Catalog.where(group_id==current_user.group.id and id==answer_form.id).each do |c| %>
-                <%
-                 c.content
-                %>
-
-                <%=answer_form.text_area :content%>
-        	<%=answer_form.submit "Create questions", class: "btn btn-medium btn-primary"%>	
-                <%end%>
-        	<% end%>		
+		<% @catalogs.each do |catalog| %>
+			<%= catalog.content %>
+			<%= render 'answer' , catalog: catalog %>
+		<% end %> 
 	</div>
 </div>

@@ -19,6 +19,7 @@ module SessionsHelper
     def current_user?(user)
       user==current_user
     end
+    
   	def signed_in?
     	!current_user.nil?
   	end
@@ -37,7 +38,16 @@ module SessionsHelper
       session[:return_to] = request.url
     end
 
-    
+    def answer?(catalog)
+      !Answer.find_by(user_id: current_user.id , catalog_id: catalog.id).nil? && 
+      Answer.find_by(user_id: current_user.id , catalog_id: catalog.id).created_at.to_date == Date.current
+
+    end
+
+    def answer(catalog)
+      Answer.find_by(user_id: current_user.id , catalog_id: catalog.id)
+    end
+
     def signed_in_user
       unless signed_in?
         store_location

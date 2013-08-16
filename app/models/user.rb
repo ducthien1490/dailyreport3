@@ -1,8 +1,8 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   belongs_to :group
-
-  
+  #has_many :catalogs, foreign_key: "group_id"
+  #accepts_nested_attributes_for :catalogs
   has_many :answers
   #validate 
   validates :name, presence: true, length: { maximum: 50,minimum:5}

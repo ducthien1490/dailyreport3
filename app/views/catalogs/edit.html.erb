@@ -2,7 +2,6 @@
 <h2> Update the question </h2>
 <div class ='center'>
 <%= render 'shared/menu' %>
-<div class="row" >
 	<div class="span6 offset1">
 		<%= form_for(@catalog) do |f| %>
 			<%= render 'shared/error_messages', object: f.object %>
@@ -14,9 +13,11 @@
 			<%= f.label :content %>
 			<%= f.text_area :content %>
 
-			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+			<%= f.label :required %>
+			<%= f.select :required,([['Yes', 't'], ['No', 'f']]) %>
+
+			<%= f.submit "Save changes", class: "btn btn-medium btn-primary" %>
 		<% end %>
 	</div>
-</div>
 </div>
 

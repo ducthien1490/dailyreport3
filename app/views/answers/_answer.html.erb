@@ -1,0 +1,13 @@
+<%= form_for([catalog,catalog.answers.build],remote: true ) do |answer| %>
+				<li class ='divider' style="margin-bottom:7px;"></li>
+				<%=answer.hidden_field :user_id ,:value => current_user.id %>
+				<%=answer.hidden_field :catalog_id ,:value => catalog.id %>
+
+				<% if answer?(catalog) %>
+					<%= answer.text_area :content ,:value => answer(catalog).content %>
+					<%= answer.submit 'Submit', class:"btn btn-medium btn-primary" %>
+				<% else %>
+					<%= answer.text_area :content %>
+					<%= answer.submit 'Submit', class:"btn btn-medium btn-primary" %>
+				<% end %>
+			<%end %>
