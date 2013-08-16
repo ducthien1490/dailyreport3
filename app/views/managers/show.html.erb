@@ -4,7 +4,15 @@
 </h2>
 <div class ='center'>
 <%= render 'shared/menu' %>
-<div class='offset4'>
+<div class="span8">
+	<div class="input-append date" id="dp3" data-date-format="dd-mm-yyyy">
+    <input class="span2" size="16" type="text" value="12-02-2013" readonly><span class="add-on"><i class="icon-th"></i></span>
+</div>
+<script>
+$('#dp3').datepicker();
+</script>
+</div>
+
 <table class='table table-striped' >
 	<thead>
 	<tr>
