@@ -24,7 +24,13 @@
 					<span class="label label-important">Deactive</span>
 					<% end %>
 				</td>
-				<td><%= user.name %></td>
+				<td><%= user.name %> &nbsp
+					<%if user.manager_group? %>
+						<span class= 'img' title='Manager Group'>
+							<%= image_tag("manager.png", :alt => "rss feed") %>
+						</span>
+					<%end%>
+				</td>
 				<td><%= user.email %></td>
 				<% if user.admin? %>
 					<td></td>

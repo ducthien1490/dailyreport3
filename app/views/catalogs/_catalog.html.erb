@@ -1,5 +1,10 @@
 <li>
-  <span class="content"><%= catalog.content %></span>&nbsp
+  <span class="content">
+  	<% if catalog.required? %>
+  		<span style ="color:red;font-size:1.0em" title="Required" >Required</span>
+  	<%end %>	
+  	<%= catalog.content %>
+  </span>&nbsp
 </br>
   	<span style="float:left"><%= link_to "Edit ",edit_catalog_path(catalog) %> &nbsp
   		<%= link_to " Delete",catalog, method: :delete, data: {confirm: "Are you really want to delete this user?"} %>

@@ -1,14 +1,14 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:index, :update,:edit, :update]
-  before_action :no_correct_user,   only: [:show,:edit, :update]
-  before_action :admin_user,   only: [:index,:show ,:edit, :update]
+  before_action :correct_user,   only: [:show,:edit, :update, :new_report]
+  #before_action :admin_user,   only: [:index,:show ,:edit, :update]
 
   def new
   	#@password = SecureRandom.hex(10)
     @password = 'foobar'
   	@user = User.new
   end
-  
+
   def excel
      @users = User.all
      filename = "data_users.xls"
@@ -17,6 +17,7 @@ class UsersController < ApplicationController
      format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" }
     end
   end
+
   def index
   	@users = User.paginate(page: params[:page], per_page: "20")
   end
@@ -86,11 +87,13 @@ class UsersController < ApplicationController
        redirect_to(root_url)unless current_user.admin?
     end
     
-    def no_correct_user
+    def correct_user
      # binding.pry
       @user = User.find(params[:id])
-      redirect_to(root_url) if current_user?(@user) # neu khong fai la admin thy quay ve root_url .
-      # neu la admin thy vao trang dang nhap
+      if !current_user?(@user) && !current_user.admin?
+        redirect_to(root_url)  
+      end
+      #users hien tai khong duoc edit profile cua user khac
     end
  
 end
