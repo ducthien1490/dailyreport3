@@ -10,7 +10,11 @@ class UsersController < ApplicationController
   end
 
   def excel
-     @users = User.all
+     #@users = User.all
+    
+     @users=User.find_by(id: current_user.id)
+     @answers = Answer.where(user_id: current_user.id)
+     @time=params[:time] 
      filename = "data_users.xls"
      respond_to do |format|
      format.html # index.html.erb
