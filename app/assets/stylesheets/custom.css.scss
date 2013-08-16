@@ -97,17 +97,17 @@ footer {
       color: $grayDarker;
     }
   }
-  small {
-    float: left;
-  }
   ul {
+    margin-top: 0px;
     float: right;
-    margin-right: 70px;
     list-style: none;
     li {
       float: left;
       margin-left: 10px;
     }
+  }
+  small {
+    display: inline-block;
   }
 }
 
@@ -175,8 +175,8 @@ input {
   height: auto !important;
 }
 /* Users index */
-.pagination {
-  
+.img img {
+  height: 20px;
 }
 .users {
   list-style: none;

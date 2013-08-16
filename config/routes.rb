@@ -3,7 +3,9 @@ Dailyreport3::Application.routes.draw do
   
   resources :users 
   resources :sessions, only: [:new, :create, :destroy]
-  resources :catalogs#, only: [:new, :create, :destroy, :index, :edit]
+  resources :catalogs do
+    resources :answers
+    end
   resources :groups #, only: [:new, :create, :destroy, :index, :edit]
   resources :answers, only: [:new, :create, :update]
   root 'static_pages#home'

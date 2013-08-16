@@ -1,4 +1,6 @@
 class CatalogsController < ApplicationController
+	before_action :signed_in_user, only: [:index, :update,:edit, :update]
+  	before_action :admin_user,   only: [:show,:edit, :update,:index]
 	def new
 		@catalog = Catalog.new
 	end
@@ -51,6 +53,10 @@ class CatalogsController < ApplicationController
 		def catalog_params
 			params.require(:catalog).permit(:content,:group_id,:required)
 		end
+
+		def admin_user
+       		redirect_to(root_url)unless current_user.admin?
+    	end	
 
 end
 
