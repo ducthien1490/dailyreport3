@@ -50,6 +50,9 @@ class CatalogsController < ApplicationController
 	end
 
 	private
+		def admin_user
+       		redirect_to(root_url)unless current_user.admin?
+    	end
 		def catalog_params
 			params.require(:catalog).permit(:content,:group_id,:required)
 		end

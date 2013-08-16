@@ -1,4 +1,5 @@
 class GroupsController < ApplicationController
+
 	before_action :signed_in_user, only: [:index, :update,:edit, :update]
   	before_action :admin_user,   only: [:index,:show,:edit, :update]
 	def new
@@ -42,6 +43,9 @@ class GroupsController < ApplicationController
 	end
 
 	private
+	def admin_user
+       redirect_to(root_url)unless current_user.admin?
+    	end
 		def group_params
 			#binding.pry
 			params.fetch(:group, {}).permit(:name)

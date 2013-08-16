@@ -184,14 +184,20 @@ input {
 }
 .table-striped  {
  white-space: nowrap;
- width:auto;
+ width:900px;
  margin-bottom: 40px;
+ table-layout: fixed;
+
 }
-.table-striped td {
+.table-striped td{
+overflow: hidden;
 padding-right: 50px;
- padding-top: 4px;
-  padding-bottom: 4px;
+padding-top: 4px;
+padding-bottom: 4px;
 }
+
+
+
 /* Homepage */
 .hero-unit {
   margin-top: 20px;
@@ -244,14 +250,19 @@ caption {
 
 /* Create catalog form */
 .nav-pills {
+  display: table;
   max-height: 30px;
   overflow: none;
-  display: table;
+  display:table;
+
 }
+
 .span8{
    margin-left: -10px;
 }
-
+.catalogs {
+  margin-top: 20px;
+}
 .catalogs li:last-child {
   margin-bottom: 30px;
 }
@@ -273,5 +284,8 @@ min-height:40px;
 {
     min-height:40px;
 
+}
+#dp2{
+  max-width: 100px
 }
 /* Daily report form */

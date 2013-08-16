@@ -22,7 +22,6 @@ class UsersController < ApplicationController
   	@users = User.paginate(page: params[:page], per_page: "20")
   end
 
-
   def show
     @user = User.find(params[:id])
 
@@ -64,7 +63,11 @@ class UsersController < ApplicationController
   	@user.destroy
     redirect_to users_path
   end
+   #///////////////////////////////report User
+   def report_user
+     @answers = Answer.where(user_id: current_user.id) 
 
+   end
 
 
   private

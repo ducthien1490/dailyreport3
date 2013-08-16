@@ -3,11 +3,9 @@
 <div class='center'>
 	<%= render'shared/menu' %>
 	<div class='span7 answer'>
-		
 		<% @catalogs.each do |catalog| %>
 			<%= catalog.content %>
 			<%= render 'answer' , catalog: catalog %>
 		<% end %> 
-
 	</div>
 </div>
