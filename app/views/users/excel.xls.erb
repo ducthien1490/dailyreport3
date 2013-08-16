@@ -1,24 +1,46 @@
+
 <table>
   <tr>
-    <th>ID</th>
-    <th>Name</th>
-    <th>Email</th>
-    <th>Manager Group</th>
-    <th>Acive</th>
-    <th></th>
-    <th></th>
-    <th></th>
+      <td>Date</td>
+      <td><%=@time%></td>
+  </tr>
+  <tr>
+      <td>Name</td>
+      <td><%=@users.name%></td>
+  </tr>
+  <tr>         
+      <td>Email</td> 
+      <td><%=@users.email%></td>
   </tr>
 
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.id %></td>
-    <td><%= user.name %></td>
-    <td><%= user.email %></td>
-    <td><%= user.manager_group %></td>
-    <td><%= user.active %></td>
-  </tr>
-<% end %>
 </table>
 
-<br />
+
+<table>
+  <tr>
+    <td>Catalog</td> 
+    <% @answers.each do |answer|%>
+      <%if(answer.updated_at.strftime("%d/%m/%y")==@time)%>
+      
+      <td><%= Catalog.find_by(id: answer.catalog_id).content %></td> 
+      <%else%>
+          
+      <%end%>    
+      <%end%>
+  </tr>
+  <tr>
+   <td> Answer</td>
+    <% @answers.each do |answer|%>
+    <%if(answer.updated_at.strftime("%d/%m/%y")==@time)%>
+      <td><%= answer.content%></td>  
+      <%else%>  
+
+      <%end%>               
+    <% end %>
+  </tr>
+</table>
+
+
+
+
+
