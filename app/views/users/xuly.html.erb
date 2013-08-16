@@ -28,14 +28,16 @@
 
 	</thead>
 	<tbody>
-		<% @answers.each do |answer|%>
+		<% @answer.each do |answer|%>
+		    <%if(answer.updated_at.strftime("%d/%m/%y")==@time)%>
 			<tr>
-
 				<td><%= answer.updated_at %></td>
 				<td><%= Catalog.find_by(id: answer.catalog_id).content %></td>
-				<td><%= answer.content %></td>
-				
-			</tr>								
+				<td><%= answer.content %></td>	
+			</tr>
+			<%else%>
+			  	
+			<%end%>								
 		<% end %>
 	</tbody>
 </table>
