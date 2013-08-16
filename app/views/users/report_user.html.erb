@@ -12,7 +12,7 @@
 		<th>Question</th>
 		<th>Answer</th>
 	<%= form_tag(xuly_path, :id => "form123") do %>
-		<input type="text" name ="time" value="02/16/13" data-date-format="dd/mm/yy" id="dp2">
+		<input type="text" name ="time" value="<%=Time.current.strftime('%d/%m/%y')%>" data-date-format="dd/mm/yy" id="dp2">
     <% end %>
 
     <script>
@@ -21,22 +21,21 @@
     	var form = $('#form123');
     	form.submit();
     });
+
     </script>
-   
-
-    
-
 	</thead>
 	<tbody>
 		<% @answers.each do |answer|%>
 			<tr>
 
-				<td><%= answer.updated_at %></td>
+				<td><%= answer.updated_at.strftime("%d/%m/%Y") %></td>
 				<td><%= Catalog.find_by(id: answer.catalog_id).content %></td>
 				<td><%= answer.content %></td>
 				
 			</tr>								
 		<% end %>
+		<br/><%= link_to 'Export XLS', excel_path(:format => 'xls',:time => @time)%>
+
 	</tbody>
 </table>
 </div>

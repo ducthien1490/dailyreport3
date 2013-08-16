@@ -1,1 +1,1 @@
-$("#answer_content").append("<%= escape_javascript(answer.content)%>");
+$("#answer_content").prepend("<%= escape_javascript(@answer.content)%>");
