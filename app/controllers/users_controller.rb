@@ -65,10 +65,22 @@ class UsersController < ApplicationController
   end
    #///////////////////////////////report User
    def report_user
-     @answers = Answer.where(user_id: current_user.id) 
 
+     @answers = Answer.where(user_id: current_user.id)
    end
 
+   def xuly
+   
+      @time=params[:time] 
+     # @strTime=@time.to_time
+      @answer=Answer.where(user_id: current_user.id )
+      #@answers =Answer.find_by_sql(['select *from answers where user user_id= :id and 
+       # updated_at.strftime("%d/%m/%y")=:time',{:id => params[:id]},:time=>params[:time]])
+       #binding.pry
+       #Answer.where(user_id: current_user.id )
+
+       
+   end
 
   private
   	def user_params

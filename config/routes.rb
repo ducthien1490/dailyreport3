@@ -18,6 +18,7 @@ Dailyreport3::Application.routes.draw do
   match '/excel',   to: 'users#excel',          via:'get'
   match '/managers/:id/show',to: 'managers#show',       via:'get' 
   match '/report_user' ,to: 'users#report_user', via:'get'
+  match '/xuly' , to: 'users#xuly', via: 'post'
  # match '/edit' ,   to: 'users#edit',         via: 'get'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
