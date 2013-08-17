@@ -17,7 +17,7 @@ class ManagersController < ApplicationController
 			@managers.each do |manager|
 				@users = User.where(group_id: manager.group_id)
 				@users.each do |user|
-					UserMailer.sending_dailyreport(manager,user).diliver
+					ManagerMailer.sending_users_report(manager,user).diliver
 				end
 			end
 		end

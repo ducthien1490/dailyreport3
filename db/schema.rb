@@ -55,7 +55,6 @@ ActiveRecord::Schema.define(version: 20130817025218) do
     t.integer  "group_id"
     t.string   "password_digest"
     t.string   "remember_token"
-    t.integer  "group_id",        default: 0
     t.string   "md5_id"
   end
 
