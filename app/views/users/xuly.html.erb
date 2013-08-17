@@ -28,8 +28,8 @@
 		    <%if(answer.updated_at.strftime("%d/%m/%y")==@time)%>
 			<tr>
 				<td><%= answer.updated_at.strftime("%d/%m/%y") %></td>
-				<td><%= Catalog.find_by(id: answer.catalog_id).content %></td>
-				<td><%= answer.content %></td>	
+				<td><pre><%= Catalog.find_by(id: answer.catalog_id).content %></pre></td>
+				<td><pre><%= answer.content %></pre></td>	
 			</tr>
 			<%else%>
 			  	
