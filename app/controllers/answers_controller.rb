@@ -12,22 +12,20 @@ class AnswersController < ApplicationController
   	end
 
 	def create
+		 
 		catalog = Catalog.find(params[:catalog_id])
-		@answer = catalog.answers.new(answer_params)
-		if @answer.save
-			render :nothing => true
+		if answer?(catalog)
+			@answer = answer(catalog)
+			if @answer.update_attributes(answer_params)
+				render :nothing => true
+    		end	
+    	else	
+			@answer = catalog.answers.new(answer_params)
+			if @answer.save
+				render :nothing => true
+			end
 		end
-		
 	end
-
-	def update
-		catalog = Catalog.find(params[:catalog_id])
-		@answer = answer(catalog)
-		if @answer.update_attributes(answer_params)
-			render :nothing => true
-    	end	
-
-	end	
 
 
 
