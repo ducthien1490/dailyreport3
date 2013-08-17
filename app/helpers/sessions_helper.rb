@@ -43,7 +43,6 @@ module SessionsHelper
       Answer.find_by(user_id: current_user.id , catalog_id: catalog.id).created_at.to_date == Date.current
 
     end
-    
 
     def answer(catalog)
       Answer.find_by(user_id: current_user.id , catalog_id: catalog.id)

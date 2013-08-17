@@ -12,7 +12,7 @@
 		<th>Question</th>
 		<th>Answer</th>
 	<%= form_tag(xuly_path, :id => "form123") do %>
-		<input type="text" name ="time" value="<%=Time.current.strftime('%d/%m/%y')%>" data-date-format="dd/mm/yy" id="dp2">
+		<input type="text" name ="time" value="<%=@time %>" data-date-format="dd/mm/yy" id="dp2">
     <% end %>
 
     <script>
