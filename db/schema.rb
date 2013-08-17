@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130813084243) do
+ActiveRecord::Schema.define(version: 20130817023322) do
 
   create_table "answers", force: true do |t|
     t.integer  "catalog_id"
@@ -37,6 +37,13 @@ ActiveRecord::Schema.define(version: 20130813084243) do
     t.datetime "updated_at"
   end
 
+  create_table "md5_ids", force: true do |t|
+    t.string   "md5"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", force: true do |t|
     t.string   "name"
     t.string   "email"
@@ -45,9 +52,9 @@ ActiveRecord::Schema.define(version: 20130813084243) do
     t.boolean  "manager_group",   default: false
     t.boolean  "admin",           default: false
     t.boolean  "active",          default: false
-    t.integer  "group_id"
     t.string   "password_digest"
     t.string   "remember_token"
+    t.integer  "group_id",        default: 0
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
