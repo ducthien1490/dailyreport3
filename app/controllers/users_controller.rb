@@ -6,7 +6,7 @@ class UsersController < ApplicationController
 
   def new
   	#@password = SecureRandom.hex(10)
-    @password = 'foobar'
+    #@password = 'foobar'
   	@user = User.new
   end
 
@@ -28,15 +28,27 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
-
+  @user = User.find(params[:id])
+  if(current_user.admin&&@user.active!=true&&current_user!=@user)
+        @user.toggle!(:active)
+        flash[:success] = "User#{@user.email} Actived!"
+        redirect_to root_url
+  else     
+      redirect_to root_url
   end
+end
 
   def create
 	   @user= User.new(save_params)
-
+    
   	if @user.save 
       UserMailer.registration_confirmation(@user).deliver  
+      User.all.each do |u_a|
+        if(u_a.admin)
+          UserMailer.active_by_admin(@user,u_a).deliver #GUI MAIL CHO ADMIN
+          #binding.pry
+        end
+     end
   		flash[:success] = "Acount created.Wait for adminstration aproval!"
   		redirect_to root_url
   	else

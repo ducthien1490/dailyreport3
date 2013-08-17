@@ -12,9 +12,12 @@
 
 			<%= f.label :email %>
 			<%= f.text_field :email %>
-			
-			<%= f.hidden_field(:password, :value => @password) %>
-			<%= f.hidden_field(:password_confirmation, :value => @password) %>
+
+			<%=f.label :password%>
+			<%= f.text_field :password%>
+
+			<%=f.label :password_confirmation%>
+			<%= f.text_field :password_confirmation %>
 
 			<%= f.submit "Create account", class: "btn btn-medium btn-primary" %>
 		<% end %>
