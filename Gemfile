@@ -10,6 +10,7 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'faker', '1.1.2'
 gem 'pry'
 gem 'bootstrap-datepicker-rails'
+gem 'whenever', :require => false
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do

@@ -2,8 +2,8 @@
       :address              => "smtp.gmail.com",  
       :port                 => 587,  
       :domain               => "gmail.com",  
-      :user_name            => "cktdailyreport3",  
-      :password             => "cktframgia",  
+      :user_name            => "cktdailyreport.test",  
+      :password             => "chuyenkhanhthien",  
       :authentication       => "plain",  
       :enable_starttls_auto => true  
     }  

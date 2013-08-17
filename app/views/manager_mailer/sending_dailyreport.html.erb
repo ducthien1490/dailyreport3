@@ -1,0 +1,22 @@
+Daily report of 
+<% @user.name %>
+<table class='table table-striped' >
+	<thead>
+	<tr>
+		<th style="width:100px">Date</th>
+		<th>Question </th>
+		<th>Answer </th>
+	</tr>
+	</thead>
+	<tbody>
+		<% @answers.each do |answer|%>
+			<%if(answer.updated_at.strftime("%d/%m/%y")==@time1 && @time1==@time2)%>
+			<tr>
+				<td style="width:100px"><%= answer.updated_at.strftime("%d/%m/%y") %></td>
+				<td><pre><%= Catalog.find_by(id: answer.catalog_id).content %></pre></td>
+				<td><pre><%= answer.content %></pre></td>	
+			</tr>
+			<% end %>
+		<% end %>
+	</tbody>
+</table>
