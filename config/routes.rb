@@ -21,6 +21,7 @@ Dailyreport3::Application.routes.draw do
   match '/xuly' , to: 'users#xuly', via: 'post'
   match '/managers/:id/show',to: 'managers#show',       via:'post'
   match '/managers/:id',to: 'managers#show',       via:'post'  
+  match '/answers/create', to: 'answers#create' ,via: 'post'
  # match '/edit' ,   to: 'users#edit',         via: 'get'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

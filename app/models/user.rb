@@ -1,10 +1,7 @@
 class User < ActiveRecord::Base
   before_save { self.email = email.downcase }
   belongs_to :group
-  #has_many :catalogs, foreign_key: "group_id"
-  #accepts_nested_attributes_for :catalogs
-  has_many :answers
-  #validate 
+  has_many :answers 
   validates :name, presence: true, length: { maximum: 50,minimum:5}
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@framgia.com/i
   validates :email, presence:   true,
@@ -22,9 +19,6 @@ class User < ActiveRecord::Base
   def User.encrypt(token)
     Digest::SHA1.hexdigest(token.to_s)
   end
-
-
-
   private
 
     def create_remember_token
