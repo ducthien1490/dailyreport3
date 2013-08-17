@@ -1,0 +1,24 @@
+
+[1mFrom:[0m /home/asvenus/DailyReport/dailyreport3/app/controllers/users_controller.rb @ line 42 UsersController#create:
+
+    [1;34m40[0m:   [1;31mdef[0m [1;34mcreate[0m
+    [1;34m41[0m: 	   @user= [1;34m[4mUser[0m.new(save_params)
+ => [1;34m42[0m:     binding.pry
+    [1;34m43[0m:   	[1;31mif[0m @user.save 
+    [1;34m44[0m:       [1;34m[4mUserMailer[0m.registration_confirmation(@user).deliver  
+    [1;34m45[0m:       [1;34m[4mUser[0m.all.each [1;31mdo[0m |u_a|
+    [1;34m46[0m:         [1;31mif[0m(u_a.admin)
+    [1;34m47[0m:           [1;34m[4mUserMailer[0m.active_by_admin(@user,u_a).deliver [0;34m#GUI MAIL CHO ADMIN[0m
+    [1;34m48[0m:           [0;34m#binding.pry[0m
+    [1;34m49[0m:         [1;31mend[0m
+    [1;34m50[0m:      [1;31mend[0m
+    [1;34m51[0m: 
+    [1;34m52[0m: 
+    [1;34m53[0m: 
+    [1;34m54[0m:   		flash[[1;32m:success[0m] = [32m[1;32m"[0m[32mAcount created.Wait for adminstration aproval![1;32m"[0m[32m[0m
+    [1;34m55[0m:   		redirect_to root_url
+    [1;34m56[0m:   	[1;31melse[0m
+    [1;34m57[0m:   		render [32m[1;32m'[0m[32mnew[1;32m'[0m[32m[0m
+    [1;34m58[0m:   	[1;31mend[0m
+    [1;34m59[0m:   [1;31mend[0m
+

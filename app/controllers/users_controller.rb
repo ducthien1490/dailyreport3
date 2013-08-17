@@ -1,11 +1,10 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:index, :update,:edit, :update]
-  before_action :correct_user,   only: [:show,:edit, :update, :new_report]
+ # before_action :correct_user,   only: [:show,:edit, :update, :new_report]
   #before_action :admin_user,   only: [:index,:show ,:edit, :update]
-
   def new
   	#@password = SecureRandom.hex(10)
-    @password = 'foobar'
+    #@password = 'foobar'
   	@user = User.new
   end
 
@@ -27,15 +26,35 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
 
+  @user = User.find(params[:id])
+  if @user.nil?
+    @user = User.find_by_md5_id(params[:id])
   end
+  
+  if(current_user.admin&&@user.active!=true&&current_user!=@user)
+        @user.toggle!(:active)
+        flash[:success] = "User #{@user.email} Actived!"
+        redirect_to root_url
+  else     
+      redirect_to root_url
+  end
+end
 
   def create
 	   @user= User.new(save_params)
-
+    #binding.pry
   	if @user.save 
       UserMailer.registration_confirmation(@user).deliver  
+      User.all.each do |u_a|
+        if(u_a.admin)
+          UserMailer.active_by_admin(@user,u_a).deliver #GUI MAIL CHO ADMIN
+          #binding.pry
+        end
+     end
+
+      
+
   		flash[:success] = "Acount created.Wait for adminstration aproval!"
   		redirect_to root_url
   	else
@@ -92,7 +111,7 @@ class UsersController < ApplicationController
   	end
 
   	def save_params
-  		params.require(:user).permit(:name, :email, :password,:password_confirmation )
+  		params.require(:user).permit(:name, :email, :password,:password_confirmation,:md5_id )
   	end
 
   	def signed_in_user
@@ -105,11 +124,13 @@ class UsersController < ApplicationController
     
     def correct_user
      # binding.pry
-      @user = User.find(params[:id])
+      @user = User.find_by_id_or_md5_id(params[:id])
       if !current_user?(@user) && !current_user.admin?
         redirect_to(root_url)  
       end
       #users hien tai khong duoc edit profile cua user khac
     end
+
+  
  
 end
