@@ -1,7 +1,7 @@
 class AnswersController < ApplicationController
-	before_action :signed_in_user, only: [:index, :update,:edit, :update]
-  	before_action :correct_user,   only: [:show,:edit, :update,:index]
-
+	before_action :signed_in_user, only: [:index, :create,:edit,:update, :new]
+  	before_action :correct_user,   only: [:show,:edit,:update,:index, :create]
+ 
 	def index
 	end
 
@@ -15,22 +15,16 @@ class AnswersController < ApplicationController
 		catalog = Catalog.find(params[:catalog_id])
 		@answer = catalog.answers.new(answer_params)
 		if @answer.save
-			flash[:success] = "Daily report saved"
-		else
-			render 'new'
+			render :nothing => true
 		end
+		
 	end
 
 	def update
 		catalog = Catalog.find(params[:catalog_id])
 		@answer = answer(catalog)
-		if @answer.update_atributes(answer_params)
-			respond_to do |format|
-      		format.html { redirect_to answer_path }
-      		format.js {render :text => "alert('Answer updated')"}
-    		end
-    	else 
-    		render 'new'
+		if @answer.update_attributes(answer_params)
+			render :nothing => true
     	end	
 
 	end	
@@ -43,9 +37,21 @@ class AnswersController < ApplicationController
 
 	private
 		def answer_params
-			params.require(:answer).permit(:user_id,:content)
+			params.permit(:user_id,:content)
 		end
-end	
+
+		def signed_in_user
+      		redirect_to signin_url, notice: "Please sign in." unless signed_in?
+    	end
+
+		def correct_user 
+   		   @user = User.find(params[:user_id])
+      		if !current_user?(@user) && !current_user.admin?
+        	redirect_to(root_url)  
+      		end
+      		#users hien tai khong duoc edit profile cua user khac
+    	end
+end		
 
 
 
