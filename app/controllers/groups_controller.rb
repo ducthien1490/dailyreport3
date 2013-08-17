@@ -1,5 +1,4 @@
 class GroupsController < ApplicationController
-
 	before_action :signed_in_user, only: [:index, :update,:edit, :update]
   	before_action :admin_user,   only: [:index,:show,:edit, :update]
 	def new
