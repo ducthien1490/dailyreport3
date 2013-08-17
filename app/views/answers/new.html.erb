@@ -4,8 +4,8 @@
 	<%= render'shared/menu' %>
 	<div class='span7 answer'>
              <script type="text/javascript">
+          
                 $('textarea').each(function(){
-                 if ($(this).val() === '') {
                      $(this).change(function() {  //ajax to auto submit answer form
                             
                             var content = $(this).val();
@@ -18,48 +18,20 @@
                                 data: {content: content, catalog_id: id,
                                         authenticity_token: token, user_id: user},
                                 success: function (){
-                                    alert('Your answer created');
+                                    alert('Your answer saved');
                                  },
                                 error: function (){
                                     alert('Error');
                                 }
                             }); // end of ajax function
-                            $(this).empty();
-                            $(this).append(content);
+                          s
                          });
-                        }
                     });
              </script>
-
-             <script>
-             //Ajax for update form
-             $('textarea').each(function(){
-                 if ($(this).val() != '') {
-                        $(this).change(function(){
-                            var content = $(this).val();
-                            var id = $(this).attr('id');
-                            var token = $('#authenticity_token').val();
-                            var user = $('#answer_user_id').val();
-                            $.ajax({
-                                url: 'update',
-                                type: 'patch',
-                                data: {content: content, catalog_id: id,
-                                authenticity_token: token, user_id: user},
-                                success: function (){
-                                    alert('Your answer updated!')
-                                 },
-                                error: function (){
-                                    alert('error');
-                                }
-                            });
-                        });
-                    }
-                    });
-        </script>
-
 		<% @catalogs.each do |catalog| %>
 			<%= catalog.content %>
 			<%= render 'answer' , catalog: catalog %>
 		<% end %> 
+        <%= link_to 'Submit',root_url ,class: 'btn btn-medium btn-primary' %>
 	</div>
 </div>

@@ -1,43 +1,41 @@
 <% provide(:title, 'Report of Users') %>
+ 
 <h2> Report of
 	<%= User.find_by(id: current_user.id).name %>
 </h2>
 <div class ='center'>
-<%= render 'shared/menu' %>
-<div class='offset4'>
-<table class='table table-striped' >
-	<thead>
-	<tr>
-		<th>The Date</th>
-		<th>Question</th>
-		<th>Answer</th>
-	<%= form_tag(xuly_path, :id => "form123") do %>
-		<input type="text" name ="time" value="<%=@time%>" data-date-format="dd/mm/yy" id="dp2">
-    <% end %>
-
-    <script>
-    $('#dp2').datepicker();
-    $('#dp2').change(function(){
-    	var form = $('#form123');
-    	form.submit();
-    });
-
-    </script>
-	</thead>
-	<tbody>
-		<% @answers.each do |answer|%>
-			<tr>
-
-				<td><%= answer.updated_at.strftime("%d/%m/%Y") %></td>
-				<td><pre><%= Catalog.find_by(id: answer.catalog_id).content %></pre></td>
-				<td><pre><%= answer.content %></pre></td>
-				
-			</tr>								
+	<%= render 'shared/menu' %>
+	<div class='offset4'>
+		<%= form_tag(xuly_path, :id => "form123") do %>
+				<input type="text" name ="time" value="<%=Time.current.strftime('%d/%m/%y')%>" data-date-format="dd/mm/yy" id="dp2">
 		<% end %>
-		<br/><%= link_to 'Export XLS', excel_path(:format => 'xls',:time => @time)%>
-
-	</tbody>
-</table>
+	   <span><%= link_to 'Export XLS', excel_path(:format => 'xls',:time => @time) %></span>
+	      <script>
+		    $('#dp2').datepicker();
+		    $('#dp2').change(function(){
+		    	var form = $('#form123');
+		    	form.submit();
+		    });
+    		</script>
+	<table class='table table-striped' >
+		<thead>
+			<caption style='float:left;font-weight:bolder'>Date: <%= @time %></caption>
+			<tr>
+				<th>Index</th>
+				<th>Question</th>
+				<th>Answer</th>
+		</thead>
+		<tbody>
+			<%i=0%>
+			<% @answers.each do |answer|%>
+				<tr>
+					<td>Question &nbsp  <%=i=i+1%></td>		
+					<td><pre><%= Catalog.find_by(id: answer.catalog_id).content %></pre></td>
+					<td><pre><%= answer.content %></pre></td>
+				</tr>					
+			<% end %>
+		</tbody>
+	</table>
+	</div>
+	<!--end div user-->
 </div>
-<!--end div user-->
-</div> <!--End div center-->
