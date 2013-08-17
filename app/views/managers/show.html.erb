@@ -4,32 +4,48 @@
 </h2>
 <div class ='center'>
 <%= render 'shared/menu' %>
-<div class="span8">
-	<div class="input-append date" id="dp3" data-date-format="dd-mm-yyyy">
-    <input class="span2" size="16" type="text" value="12-02-2013" readonly><span class="add-on"><i class="icon-th"></i></span>
+<div class="span2">	
+<li style="list-style:none"> From <%= form_tag(manager_path, :id => "form1") do %>
+		<input type="text" name ="time1" value="<%=@time1 %>"data-date-format="dd/mm/yy" id="dp1">
+		<input type="text" name ="time2" value="<%=@time2 %>"data-date-format="dd/mm/yy" id="dp2">
+    <% end %>
+</li>
 </div>
-<script>
-$('#dp3').datepicker();
-</script>
-</div>
-
+  <script>
+    $('#dp1').datepicker();
+    $('#dp2').datepicker();
+    $('#dp2').change(function(){
+    	var form1 = $('#form1');
+    	form1.submit();
+    });
+    
+  </script>
 <table class='table table-striped' >
 	<thead>
 	<tr>
-		<th>The Date</th>
-		<th>Question</th>
-		<th>Answer</th>
+		<th style="width:100px">Date</th>
+		<th>Question </th>
+		<th>Answer </th>
 	</tr>
 	</thead>
 	<tbody>
 		<% @answers.each do |answer|%>
+			<%if(answer.updated_at.strftime("%d/%m/%y")==@time1 && @time1==@time2)%>
 			<tr>
-				<td><%= answer.updated_at %></td>
-				<td><%= Catalog.find_by(id: answer.catalog_id).content %></td>
-				<td><%= answer.content %></td>
-				
-			</tr>								
-		<% end %>
+				<td style="width:100px"><%= answer.updated_at.strftime("%d/%m/%y") %></td>
+				<td><pre><%= Catalog.find_by(id: answer.catalog_id).content %></pre></td>
+				<td><pre><%= answer.content %></pre></td>	
+			</tr>
+			<% end %>
+			<%if (@time1 && @time2 &&( @time2 > @time1 )&& (answer.updated_at.strftime("%d/%m/%y") > @time1) && (answer.updated_at.strftime("%d/%m/%y") < @time2)) %>
+			<tr>
+				<td style="width:100px"><%= answer.updated_at.strftime("%d/%m/%y") %></td>
+				<td><pre><%= Catalog.find_by(id: answer.catalog_id).content %></pre></td>
+				<td><pre><%= answer.content %></pre></td>
+			</tr>
+			<% end %>
+		<%end%>								
+	</tbody>
 	</tbody>
 </table>
 </div>

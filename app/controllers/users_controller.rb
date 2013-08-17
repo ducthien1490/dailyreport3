@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:index, :update,:edit, :update]
- # before_action :correct_user,   only: [:show,:edit, :update, :new_report]
-  #before_action :admin_user,   only: [:index,:show ,:edit, :update]
+  before_action :correct_user,   only: [:show,:edit, :update, :new_report]
+  before_action :admin_user,   only: [:index,:show ,:edit, :update]
   def new
   	#@password = SecureRandom.hex(10)
     #@password = 'foobar'
@@ -93,16 +93,8 @@ end
    end
 
    def xuly
-   
       @time=params[:time] 
-     # @strTime=@time.to_time
-      @answer=Answer.where(user_id: current_user.id )
-      #@answers =Answer.find_by_sql(['select *from answers where user user_id= :id and 
-       # updated_at.strftime("%d/%m/%y")=:time',{:id => params[:id]},:time=>params[:time]])
-       #binding.pry
-       #Answer.where(user_id: current_user.id )
-
-       
+      @answer=Answer.where(user_id: current_user.id )      
    end
 
   private
