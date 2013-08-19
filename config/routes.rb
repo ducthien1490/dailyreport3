@@ -22,6 +22,8 @@ Dailyreport3::Application.routes.draw do
   match '/managers/:id/show',to: 'managers#show',       via:'post'
   match '/managers/:id',to: 'managers#show',       via:'post'  
   match '/answers/create', to: 'answers#create' ,via: 'post'
+  match '/users/:id/edit_current_user',to: 'users#edit_current_user',via: 'get'
+
  # match '/edit' ,   to: 'users#edit',         via: 'get'
   # You can have the root of your site routed with "root"
   # root 'welcome#index'
