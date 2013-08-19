@@ -17,8 +17,9 @@ Dailyreport3::Application.routes.draw do
   match '/catalog', to: 'catalogs#new',         via: 'get'
   match '/excel',   to: 'users#excel',          via:'get'
   match '/managers/:id/show',to: 'managers#show',       via:'get' 
+  match '/report_user' ,to: 'users#report_user', via:'post'
   match '/report_user' ,to: 'users#report_user', via:'get'
-  match '/xuly' , to: 'users#xuly', via: 'post'
+  
   match '/managers/:id/show',to: 'managers#show',       via:'post'
   match '/managers/:id',to: 'managers#show',       via:'post'  
   match '/answers/create', to: 'answers#create' ,via: 'post'

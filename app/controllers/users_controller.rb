@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	before_action :signed_in_user, only: [:index, :update,:edit, :update]
+	before_action :signed_in_user, only: [:show,:index, :update,:edit, :update]
   before_action :correct_user,   only: [:show,:edit, :update, :new_report]
   before_action :admin_user,   only: [:index,:show ,:edit, :update]
   def new
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
 
   def show
 
-  @user = User.find(params[:id])
+  @user = User.find_by_id(params[:id])
   if @user.nil?
     @user = User.find_by_md5_id(params[:id])
   end
@@ -87,14 +87,10 @@ end
     redirect_to users_path
   end
    #///////////////////////////////report User
+
    def report_user
-
-     @answers = Answer.where(user_id: current_user.id)
-   end
-
-   def xuly
       @time=params[:time] 
-      @answer=Answer.where(user_id: current_user.id )      
+      @answers=Answer.where(user_id: current_user.id )      
    end
 
   private
@@ -116,7 +112,7 @@ end
     
     def correct_user
      # binding.pry
-      @user = User.find_by_id_or_md5_id(params[:id])
+      @user = User.find_by_id(params[:id])
       if !current_user?(@user) && !current_user.admin?
         redirect_to(root_url)  
       end

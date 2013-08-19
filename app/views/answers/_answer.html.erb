@@ -4,8 +4,16 @@
 	<%=answer.hidden_field :user_id ,:value => current_user.id %>
 	<%= hidden_field_tag('authenticity_token', form_authenticity_token.to_s)%>
 	<% if answer?(catalog) %>
-		<%= answer.text_area :content ,:value => answer(catalog).content ,id: catalog.id  %>
+		<% if catalog.required? %>
+			<%= answer.text_area :content ,:value => answer(catalog).content ,id: catalog.id , class: 'required' %>
+		<% else %>
+			<%= answer.text_area :content ,:value => answer(catalog).content ,id: catalog.id  %>
+		<% end %>		
 	<% else %>
-		<%= answer.text_area :content , id: catalog.id  %>
+		<% if catalog.required? %>
+			<%= answer.text_area :content , id: catalog.id ,class: "required" %>
+		<%else%>
+			<%= answer.text_area :content , id: catalog.id %>
+		<% end %>
 	<% end %>
 <%end %>
