@@ -16,3 +16,7 @@
 //= require_tree .
 //= require bootstrap
 //= require bootstrap-datepicker
+//= require answer
+//= require_self          
+          
+                    

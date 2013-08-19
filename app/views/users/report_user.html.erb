@@ -5,19 +5,23 @@
 </h2>
 <div class ='center'>
 	<%= render 'shared/menu' %>
-	<div class='offset4'>
-		<%= form_tag(report_user_path, :id => "form123") do %>
-				<input type="text" name ="time" value="<%=@time%>" data-date-format="dd/mm/yy" id="dp2">
+	<div class='span10'>
+		<%= form_tag(report_user_path, :id => "form123",remote:true) do %>
+			<%= hidden_field_tag('authenticity_token', form_authenticity_token.to_s)%>
+			<input type="text" name ="time" value="<%=@time%>" data-date-format="dd/mm/yy" id="dp2">&nbsp
+			<span>
+				<%= link_to 'Export XLS', excel_path(:format => 'xls',:time => @time) %>
+			</span>
 		<% end %>
-	   <span><%= link_to 'Export XLS', excel_path(:format => 'xls',:time => @time) %></span>
-	      <script>
+	   
+	    <script>
 		    $('#dp2').datepicker();
 		    $('#dp2').change(function(){
 		    	var form = $('#form123');
 		    	form.submit();
 		    });
-    		</script>
-	<table class='table table-striped' >
+    	</script>
+	<table class='table table-striped report' >
 		<thead>
 			<caption style='float:left;font-weight:bolder'>Date: <%= @time %></caption>
 			<tr>
@@ -28,7 +32,7 @@
 		<tbody>
 			<%i=0%>
 			<% @answers.each do |answer|%>
-			<%if(answer.updated_at.strftime("%d/%m/%y")==@time)%>
+				<% if(answer.updated_at.strftime("%d/%m/%y")==@time) %>
 				<tr>
 					<td>Question &nbsp  <%=i=i+1%></td>		
 					<td><pre><%= Catalog.find_by(id: answer.catalog_id).content %></pre></td>

@@ -2,7 +2,7 @@
 <h2> All Questions</h2>
 <div class='center'>
 	<%=render 'shared/menu' %>
-	<div class="span8 offset4">
+	<div class="span9">
 		<ul class="nav nav-pills">
 			<% Group.where('id>0').each do |g| %>	
 			    <li class="<%='active' if current_page?(catalog_path(g.id)) %>">

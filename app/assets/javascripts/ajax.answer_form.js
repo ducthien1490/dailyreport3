@@ -1,10 +1,4 @@
-<% provide(:title,'Write daily report') %>
-<h2>Write Daily Report for &nbsp <strong><%= Time.now.strftime("%m/%d/%Y")%></strong></h2>
-<div class='center'>
-	<%= render'shared/menu' %>
-	<div class='span8'>
-             <script>
-                $("#button").click(function(e){                    
+$("#button").click(function(e){                    
                     $(".required").each(function(){
                         if($(this).val() ==='' ) {   //prevent user leave page when not fill required fields
                             var id = $(this).attr('id');
@@ -17,7 +11,7 @@
                         } // end if clause
                     });
                     var empty = $('.required').filter(function(){
-                        return this.value === ''
+                        return this.value ===''
                     });
                     if(!empty.length){
                         $('textarea').each(function(){
@@ -40,23 +34,4 @@
                                 }); // end of ajax function   
                             }); //end function save or create
                         } // end if clause
-                }); //end click function
-             </script>
-
-
-
-
-
-        <% i=1 %>
-		<% @catalogs.each do |catalog| %>
-			<b><%=i%></b>.
-            <% if catalog.required? %>
-                <span title="Required" style ="color:red;font-size:1.2em">*</span>
-            <% end %>
-            <%= catalog.content %>
-			<%= render 'answer' , catalog: catalog %>
-            <% i=i+1 %>
-		<% end %> 
-        <%= link_to 'Submit',root_url,class: 'btn btn-medium btn-primary' , id:'button',onclick: 'validate()' %>
-	</div>
-</div>
+                }); //end click functio

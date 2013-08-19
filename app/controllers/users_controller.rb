@@ -106,7 +106,7 @@ end
 
    def xuly
       @time=params[:time] 
-      @answer=Answer.where(user_id: current_user.id )      
+      @answers=Answer.where(user_id: current_user.id )      
    end
 
   private
