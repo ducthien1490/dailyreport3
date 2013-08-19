@@ -12,7 +12,7 @@ class UsersController < ApplicationController
      @users=User.find_by(id: current_user.id)
      @answers = Answer.where(user_id: current_user.id)
      @time=params[:time] 
-     filename = "data_users.xls"
+     filename =["[",@users.name, "]","Daily Report at",@time,".xls"].join(" ")
      respond_to do |format|
      format.html # index.html.erb
      format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" }
@@ -133,11 +133,10 @@ end
     def correct_user
      # binding.pry
       #@user = User.find_by_id_or_md5_id(params[:id])
-    @user = User.find(params[:id])
-    if @user.nil?
-      @user = User.find_by_md5_id(params[:id])
-    end
-
+      @user = User.find(params[:id])
+      if @user.nil?
+        @user = User.find_by_md5_id(params[:id])
+      end
       if !current_user?(@user) && !current_user.admin?
         redirect_to(root_url)  
       end

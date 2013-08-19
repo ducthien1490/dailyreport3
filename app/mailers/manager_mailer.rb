@@ -4,6 +4,7 @@ class ManagerMailer < ActionMailer::Base
     def sending_dailyreport(manager, user)
       @manager = manager
       @user = user
+      @answers = Answer.where(user_id: user.id)
       @title =  ["[", @user.name, "]","[Daily report]",Date.current.strftime("20%y-%m-%d")].join(" ")
       mail(:to => @manager.email, :subject => @title)  
     end  
@@ -13,10 +14,14 @@ class ManagerMailer < ActionMailer::Base
       @managers.each do |manager|
         @users = User.where(group_id: manager.group_id)
         @users.each do |user|
-          @title =  ["[", @user.name, "]","[Daily report]",Date.current.strftime("20%y-%m-%d")].join(" ")
-          mail(:to => @manager.email, :subject => @title)
+          #binding.pry
+          @answers = Answer.where(user_id: user.id)
+          @title =  ["[", user.name, "]","[Daily report]",Date.current.strftime("20%y-%m-%d")].join(" ")
+          mail(:to => manager.email, :subject => @title)
         end
       end
     end
 
+
 end
+

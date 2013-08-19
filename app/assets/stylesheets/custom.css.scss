@@ -186,6 +186,7 @@ input {
  white-space: nowrap;
  width:900px;
  margin-bottom: 40px;
+ table-layout: fixed;
 ;
 
 }
@@ -286,7 +287,10 @@ min-height:40px;
 
 }
 #dp2{
-  max-width: 100px
+  max-width: 110px
+}
+#dp1{
+  max-width: 110px
 }
 /* Daily report form */
 

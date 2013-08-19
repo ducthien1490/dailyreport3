@@ -1,5 +1,5 @@
 class ManagersController < ApplicationController
-	before_action :manager_user,   only: [:show,:edit, :update,:index, :sending_users_report]
+	before_action :manager_user,   only: [:show,:edit, :update,:index, :export]
 
 	
 		def index
@@ -10,15 +10,19 @@ class ManagersController < ApplicationController
 			@time1=params[:time1]
 			@time2=params[:time2]
 			@answers = Answer.where(user_id: params[:id])
-		end
+			ManagerMailer.sending_users_report
 
-		def sending_users_report
-			@managers = User.where(manager_group: true)
-			@managers.each do |manager|
-				@users = User.where(group_id: manager.group_id)
-				@users.each do |user|
-					UserMailer.sending_dailyreport(manager,user).diliver
-				end
+		end
+		def export
+			@user_id = params[:user_id]
+			@answers = Answer.where(user_id: @user_id)
+			@time1=params[:time1]
+			@time2=params[:time2]
+			#binding.pry
+			filename = ["[",@time1,"]","[",@time2,"]",User.find_by(id: @user_id).name,".xls"].join(" ")
+			respond_to do |format|
+				format.html
+				format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" }
 			end
 		end
 
