@@ -10,15 +10,15 @@ class ManagersController < ApplicationController
 			@time1=params[:time1]
 			@time2=params[:time2]
 			@answers = Answer.where(user_id: params[:id])
+			ManagerMailer.sending_users_report
+
 		end
 
 		def sending_users_report
 			@managers = User.where(manager_group: true)
-			@managers.each do |manager|
-				@users = User.where(group_id: manager.group_id)
-				@users.each do |user|
-					ManagerMailer.sending_users_report(manager,user).diliver
-				end
+			scheduler = Rufus::Scheduler.start_new
+      		scheduler.in '10m' do
+				ManagerMailer.sending_users_report
 			end
 		end
 
