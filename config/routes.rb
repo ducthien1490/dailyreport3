@@ -18,6 +18,7 @@ Dailyreport3::Application.routes.draw do
   match '/excel',   to: 'users#excel',          via:'get'
   match '/export', to: 'managers#export',       via: 'get'
   match '/report_user' ,to: 'users#report_user', via:'get'
+  match '/report_user' ,to: 'users#report_user', via:'post'
   match '/xuly' , to: 'users#xuly', via: 'post'
   match '/managers/:id/show',to: 'managers#show',       via:'post'
   match '/managers/:id',to: 'managers#show',       via:'post'  
