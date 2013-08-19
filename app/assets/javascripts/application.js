@@ -16,7 +16,7 @@
 //= require_tree .
 //= require bootstrap
 //= require bootstrap-datepicker
-//= require ajax.answer_form
+//= require answer
 //= require_self          
           
                     
