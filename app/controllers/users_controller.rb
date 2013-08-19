@@ -100,8 +100,8 @@ end
   end
    #///////////////////////////////report User
    def report_user
-
-     @answers = Answer.where(user_id: current_user.id)
+      @time=params[:time] 
+      @answers = Answer.where(user_id: current_user.id)
    end
 
    def xuly

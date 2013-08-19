@@ -6,8 +6,8 @@
 <div class ='center'>
 	<%= render 'shared/menu' %>
 	<div class='offset4'>
-		<%= form_tag(xuly_path, :id => "form123") do %>
-				<input type="text" name ="time" value="<%=Time.current.strftime('%d/%m/%y')%>" data-date-format="dd/mm/yy" id="dp2">
+		<%= form_tag(report_user_path, :id => "form123") do %>
+				<input type="text" name ="time" value="<%=@time%>" data-date-format="dd/mm/yy" id="dp2">
 		<% end %>
 	   <span><%= link_to 'Export XLS', excel_path(:format => 'xls',:time => @time) %></span>
 	      <script>
@@ -28,11 +28,13 @@
 		<tbody>
 			<%i=0%>
 			<% @answers.each do |answer|%>
+			<%if(answer.updated_at.strftime("%d/%m/%y")==@time)%>
 				<tr>
 					<td>Question &nbsp  <%=i=i+1%></td>		
 					<td><pre><%= Catalog.find_by(id: answer.catalog_id).content %></pre></td>
 					<td><pre><%= answer.content %></pre></td>
 				</tr>					
+			<% end %>
 			<% end %>
 		</tbody>
 	</table>
