@@ -5,11 +5,12 @@
 <div class ='center'>
 <%= render 'shared/menu' %>
 <div class="span2">	
-<li style="list-style:none"> From <%= form_tag(manager_path, :id => "form1") do %>
+From <%= form_tag(manager_path, :id => "form1") do %>
 		<input type="text" name ="time1" value="<%=@time1 %>"data-date-format="dd/mm/yy" id="dp1">
+<div>To</div>
 		<input type="text" name ="time2" value="<%=@time2 %>"data-date-format="dd/mm/yy" id="dp2">
     <% end %>
-</li>
+<span><%= link_to 'Export XLS', export_path(:format => 'xls',:time1 => @time1, :time2 => @time2, :user_id => params[:id]) %></span>
 </div>
   <script>
     $('#dp1').datepicker();
@@ -20,6 +21,7 @@
     });
     
   </script>
+ 
 <table class='table table-striped' >
 	<thead>
 	<tr>

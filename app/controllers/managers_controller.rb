@@ -1,5 +1,5 @@
 class ManagersController < ApplicationController
-	before_action :manager_user,   only: [:show,:edit, :update,:index, :sending_users_report]
+	before_action :manager_user,   only: [:show,:edit, :update,:index, :export]
 
 	
 		def index
@@ -13,12 +13,16 @@ class ManagersController < ApplicationController
 			ManagerMailer.sending_users_report
 
 		end
-
-		def sending_users_report
-			@managers = User.where(manager_group: true)
-			scheduler = Rufus::Scheduler.start_new
-      		scheduler.in '10m' do
-				ManagerMailer.sending_users_report
+		def export
+			@user_id = params[:user_id]
+			@answers = Answer.where(user_id: @user_id)
+			@time1=params[:time1]
+			@time2=params[:time2]
+			#binding.pry
+			filename = ["[",@time1,"]","[",@time2,"]",User.find_by(id: @user_id).name,".xls"].join(" ")
+			respond_to do |format|
+				format.html
+				format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" }
 			end
 		end
 
