@@ -8,7 +8,7 @@
 	<div class='span10'>
 		<%= form_tag(report_user_path, :id => "form123",remote:true) do %>
 			<%= hidden_field_tag('authenticity_token', form_authenticity_token.to_s)%>
-			<input type="text" name ="time" value="<%=Time.current.strftime('%d/%m/%y')%>" data-date-format="dd/mm/yy" id="dp2">&nbsp
+			<input type="text" name ="time" value="<%=@time%>" data-date-format="dd/mm/yy" id="dp2">&nbsp
 			<span>
 				<%= link_to 'Export XLS', excel_path(:format => 'xls',:time => @time) %>
 			</span>

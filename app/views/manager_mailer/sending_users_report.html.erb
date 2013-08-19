@@ -8,7 +8,7 @@
 	</thead>
 	<tbody>
 		<% @answers.each do |answer|%>
-			<%if(answer.updated_at.strftime("%d/%m/%y")== Date.current.strftime("%d/%m/%y"))%>
+			<%if(answer.updated_at.strftime("%d/%m/%y")== "15/08/13")%>
 			<tr>
 				<td style="width:100px"><%= answer.updated_at.strftime("%d/%m/%y") %></td>
 				<td><%= Catalog.find_by(id: answer.catalog_id).content %></td>

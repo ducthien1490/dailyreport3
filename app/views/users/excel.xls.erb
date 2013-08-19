@@ -1,44 +1,38 @@
-
-<table>
-  <tr>
-      <td>Date</td>
-      <td><%=@time%></td>
-  </tr>
-  <tr>
-      <td>Name</td>
-      <td><%=@users.name%></td>
-  </tr>
-  <tr>         
-      <td>Email</td> 
-      <td><%=@users.email%></td>
-  </tr>
-
-</table>
-
-
-<table>
-  <tr>
-    <td>Catalog</td> 
-    <% @answers.each do |answer|%>
-      <%if(answer.updated_at.strftime("%d/%m/%y")==@time)%>
-      
-      <td><%= Catalog.find_by(id: answer.catalog_id).content %></td> 
-      <%else%>
-          
-      <%end%>    
-      <%end%>
-  </tr>
-  <tr>
-   <td> Answer</td>
-    <% @answers.each do |answer|%>
-    <%if(answer.updated_at.strftime("%d/%m/%y")==@time)%>
-      <td><%= answer.content%></td>  
-      <%else%>  
-
-      <%end%>               
+<?xml version="1.0"?>
+<Workbook xmlns="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:o="urn:schemas-microsoft-com:office:office"
+  xmlns:x="urn:schemas-microsoft-com:office:excel"
+  xmlns:ss="urn:schemas-microsoft-com:office:spreadsheet"
+  xmlns:html="http://www.w3.org/TR/REC-html40">
+  <Worksheet ss:Name="Sheet1">
+    <Table>
+      <Row>
+        <Cell><Data ss:Type="String">Date</Data></Cell>
+        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Question</Data></Cell>
+        <Cell><Data ss:Type="String">Answer</Data></Cell>
+      </Row>
+    <% @answers.each do |answer| %>
+      <%if(answer.updated_at.strftime("%d/%m/%y")==@time) %>
+      <Row>
+        <Cell><Data ss:Type="String">
+          <%= answer.updated_at.strftime("%d/%m/%y") %>
+        </Data></Cell>
+        <Cell><Data ss:Type="String">
+          <%= User.find_by(id: answer.user_id).name %>
+        </Data></Cell>
+        <Cell><Data ss:Type="String">
+          <%= Catalog.find_by(id: answer.catalog_id).content %>
+        </Data></Cell>
+        <Cell><Data ss:Type="String">
+          <%= answer.content %>
+        </Data></Cell>
+      </Row>
+      <%end %>
     <% end %>
-  </tr>
-</table>
+    </Table>
+  </Worksheet>
+</Workbook>
 
 
 

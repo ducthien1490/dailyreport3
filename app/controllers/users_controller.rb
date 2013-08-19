@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
 	before_action :signed_in_user, only: [:show,:index, :update,:edit, :update]
-  before_action :correct_user,   only: [:show,:edit, :update, :new_report]
-  before_action :admin_user,   only: [:index,:show ,:edit, :update]
+  before_action :correct_user,   only: [:show,:edit, :update, :new_report,:destroy]
+  #before_action :admin_user,   only: [:index,:show ,:edit, :update]
   def new
-  	#@password = SecureRandom.hex(10)
-    #@password = 'foobar'
   	@user = User.new
   end
 
@@ -14,7 +12,7 @@ class UsersController < ApplicationController
      @users=User.find_by(id: current_user.id)
      @answers = Answer.where(user_id: current_user.id)
      @time=params[:time] 
-     filename = "data_users.xls"
+     filename =["[",@users.name, "]","Daily Report at",@time,".xls"].join(" ")
      respond_to do |format|
      format.html # index.html.erb
      format.xls { headers["Content-Disposition"] = "attachment; filename=\"#{filename}\"" }
@@ -22,7 +20,11 @@ class UsersController < ApplicationController
   end
 
   def index
+    if(current_user.admin?)
   	@users = User.paginate(page: params[:page], per_page: "20")
+    else
+      redirect_to root_url
+    end
   end
 
   def show
@@ -67,19 +69,29 @@ end
   end
 
 
-
   def update   #for admin 
-     
+      
   	@user =User.find(params[:id])
-  	if @user.update_attributes!(user_params)
-  		flash[:success]= "Profile updated"
-  		#sign_in @user
-  		redirect_to users_path
-  	else
-  		render 'edit'
-  	end
-  end
+    if(current_user.admin? && !current_user?(@user))  # neu  la admin va khong phai tu update cho minh
+      	if @user.update_attributes!(user_params)
+      		flash[:success]= "Manager and Group changed"
+      		#sign_in @user
+      		redirect_to users_path
+      	else
+      		render 'edit'
+      	end
+    else
+       if @user.update_attributes!(user_params_for_profiles)
+          flash[:success]= "Profile updated"
+          #sign_in @user
+          redirect_to users_path
+        else
+          render 'edit'
+        end
+    end 
 
+  end
+  
 
   def destroy
   	@user = User.find(params[:id])
@@ -87,8 +99,12 @@ end
     redirect_to users_path
   end
    #///////////////////////////////report User
-
    def report_user
+      @time=params[:time] 
+      @answers = Answer.where(user_id: current_user.id)
+   end
+
+   def xuly
       @time=params[:time] 
       @answers=Answer.where(user_id: current_user.id )      
    end
@@ -97,6 +113,10 @@ end
   	def user_params
   		params.require(:user).permit(:group_id ,:manager_group)
   	end
+
+    def user_params_for_profiles
+      params.require(:user).permit(:name, :email, :password,:password_confirmation)
+    end
 
   	def save_params
   		params.require(:user).permit(:name, :email, :password,:password_confirmation,:md5_id )
@@ -112,7 +132,11 @@ end
     
     def correct_user
      # binding.pry
-      @user = User.find_by_id(params[:id])
+      #@user = User.find_by_id_or_md5_id(params[:id])
+      @user = User.find(params[:id])
+      if @user.nil?
+        @user = User.find_by_md5_id(params[:id])
+      end
       if !current_user?(@user) && !current_user.admin?
         redirect_to(root_url)  
       end
