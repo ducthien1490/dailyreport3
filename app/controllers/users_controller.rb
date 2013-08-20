@@ -52,7 +52,7 @@ end
         end
      end
 
-  		flash[:success] = "Acount created.Wait for adminstration aproval!"
+  		flash[:success] = "Account created.Wait for adminstration aproval!"
   		redirect_to root_url
   	else
   		render 'new'
@@ -135,7 +135,7 @@ end
     def correct_user
      # binding.pry
       #@user = User.find_by_id_or_md5_id(params[:id])
-      @user = User.find(params[:id])
+      @user = User.find_by_id(params[:id])
       if @user.nil?
         @user = User.find_by_md5_id(params[:id])
       end
