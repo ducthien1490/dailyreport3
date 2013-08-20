@@ -1,4 +1,4 @@
 <%= @user.name %>,
  registering! 
+<p><%= link_to "Click link to activation",user_url(@user.md5_id, :host => "localhost:3000") %></p>
 
-<p><%= link_to "Click link to activation user",user_url(@user.md5_id, :host => "localhost:3000") %></p>

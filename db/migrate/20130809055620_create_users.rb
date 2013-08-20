@@ -14,6 +14,6 @@ class CreateUsers < ActiveRecord::Migration
       change_column :users, :manager_group,:boolean ,:default => false 
       change_column :users, :admin ,:boolean, :default => false 
       change_column :users, :active ,:boolean, :default => false 
-
+      change_column :users, :group_id ,:interger, :default => 0 
     end
 end
