@@ -66,7 +66,22 @@ p {
   line-height: 1.7em;
 }
 
+::-webkit-input-placeholder {
+   color: red;
+   font-weight: bolder;
+}
+
+::-moz-placeholder { /* Firefox 18- */
+   color: red;  
+   font-weight: bolder;
+}
+
 /* header */
+div.container1 {
+  width: 1050px;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 #logo {
   float: left;
@@ -98,16 +113,13 @@ footer {
     }
   }
   ul {
-    margin-top: 0px;
+    
     float: right;
     list-style: none;
     li {
       float: left;
       margin-left: 10px;
     }
-  }
-  small {
-    display: inline-block;
   }
 }
 
@@ -186,15 +198,11 @@ input {
  white-space: nowrap;
  width:900px;
  margin-bottom: 40px;
- table-layout: fixed;
-;
-
 }
 .table-striped td{
 padding-right: 50px;
 padding-top: 4px;
 padding-bottom: 4px;
-word-wrap:break;
 }
 
 
@@ -257,10 +265,6 @@ caption {
   display:table;
 
 }
-
-.span8{
-   margin-left: -10px;
-}
 .catalogs {
   margin-top: 20px;
 }
@@ -292,6 +296,12 @@ min-height:40px;
 #dp1{
   max-width: 110px
 }
-/* Daily report form */
+/* View report form */
+.report td {
+  padding-right: 10px;
+}
+.report pre {
+  border: none;
+}
 
 
