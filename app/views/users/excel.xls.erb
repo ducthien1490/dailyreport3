@@ -7,19 +7,17 @@
   <Worksheet ss:Name="Sheet1">
     <Table>
       <Row>
-        <Cell><Data ss:Type="String">Date</Data></Cell>
-        <Cell><Data ss:Type="String">Name</Data></Cell>
+        <Cell><Data ss:Type="String">Index</Data></Cell>
         <Cell><Data ss:Type="String">Question</Data></Cell>
         <Cell><Data ss:Type="String">Answer</Data></Cell>
-      </Row>
-    <% @answers.each do |answer| %>
+      </Row>    
+       
+    <% @answers.each do |answer| %> 
       <%if(answer.updated_at.strftime("%d/%m/%y")==@time) %>
       <Row>
-        <Cell><Data ss:Type="String">
-          <%= answer.updated_at.strftime("%d/%m/%y") %>
-        </Data></Cell>
-        <Cell><Data ss:Type="String">
-          <%= User.find_by(id: answer.user_id).name %>
+        <% i=0 %>
+        <Cell><Data ss:Type="Number">
+          <%= i=i+1 %>
         </Data></Cell>
         <Cell><Data ss:Type="String">
           <%= Catalog.find_by(id: answer.catalog_id).content %>
