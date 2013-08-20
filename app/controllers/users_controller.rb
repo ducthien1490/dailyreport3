@@ -38,8 +38,6 @@ class UsersController < ApplicationController
         @user.toggle!(:active)
         flash[:success] = "User #{@user.email} Actived!"
         redirect_to root_url
-  else     
-      redirect_to root_url
   end
 end
 
@@ -80,12 +78,18 @@ end
       	else
       		render 'edit'
       	end
-    else
-       if @user.update_attributes!(user_params_for_profiles)
-          flash[:success]= "Profile updated"
+    else 
+       if @user.authenticate(params[:user][:old_password]) 
+          if @user.update_attributes(user_params_for_profiles)
+            flash[:success]= "Password Change"
           #sign_in @user
-          redirect_to users_path
+            redirect_to users_path
+          else
+            flash[:error] ="fuck"
+            render 'edit'
+          end
         else
+          flash[:error]= "Current password invalid"
           render 'edit'
         end
     end 
@@ -115,7 +119,7 @@ end
   	end
 
     def user_params_for_profiles
-      params.require(:user).permit(:name, :email, :password,:password_confirmation)
+      params.require(:user).permit(:password,:password_confirmation)
     end
 
   	def save_params
