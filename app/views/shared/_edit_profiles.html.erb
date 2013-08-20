@@ -1,13 +1,14 @@
 	<%= form_for(@user) do |f| %>
       <%= render 'shared/error_messages', object: f.object %>
+
       <%= f.label :current_password %>
       <%= f.password_field :current_password %>
 
-      <%= f.label :password %>
+      <%= f.label :new_password %>
       <%= f.password_field :password %>
 
       <%= f.label :password_confirmation, "Confirm Password" %>
       <%= f.password_field :password_confirmation %>
 
-      <%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
+      <%= f.submit "Save changes", class: "btn btn-medium btn-primary" %>
     <% end %>

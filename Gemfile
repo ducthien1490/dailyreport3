@@ -10,7 +10,6 @@ gem 'bootstrap-will_paginate', '0.0.9'
 gem 'faker', '1.1.2'
 gem 'pry'
 gem 'bootstrap-datepicker-rails'
-gem 'rails-scheduler'
 gem "rufus-scheduler", "~> 2.0.23"
 
 # Use sqlite3 as the database for Active Record
