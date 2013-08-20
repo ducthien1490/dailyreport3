@@ -27,17 +27,20 @@ class UsersController < ApplicationController
     end
   end
 
-  def show
-
+  def show   
   @user = User.find_by_id(params[:id])
   if @user.nil?
     @user = User.find_by_md5_id(params[:id])
   end
-  
+  # Active new user
   if(current_user.admin&&@user.active!=true&&current_user!=@user)
         @user.toggle!(:active)
         flash[:success] = "User #{@user.email} Actived!"
+<<<<<<< HEAD
         redirect_to root_url
+=======
+        redirect_to root_url 
+>>>>>>> 7e608091643cc050a15978e427b36f76ebb11801
   end
 end
 
@@ -53,8 +56,6 @@ end
         end
      end
 
-      
-
   		flash[:success] = "Acount created.Wait for adminstration aproval!"
   		redirect_to root_url
   	else
@@ -68,7 +69,7 @@ end
 
 
   def update   #for admin 
-      
+     
   	@user =User.find(params[:id])
     if(current_user.admin? && !current_user?(@user))  # neu  la admin va khong phai tu update cho minh
       	if @user.update_attributes!(user_params)
@@ -78,21 +79,27 @@ end
       	else
       		render 'edit'
       	end
-    else 
-       if @user.authenticate(params[:user][:old_password]) 
-          if @user.update_attributes(user_params_for_profiles)
-            flash[:success]= "Password Change"
-          #sign_in @user
-            redirect_to users_path
+      end
+    
+    if(current_user?(@user))
+       
+        #if @user.update_attributes!(user_params_for_profiles)
+        if @user.authenticate(params[:user][:current_password])
+          @user.password=params[:user][:password]
+          @user.password_confirmation=params[:user][:password_confirmation]
+          if @user.save   
+            flash[:success]= "Profile updated"
+            redirect_to @user
           else
-            flash[:error] ="fuck"
             render 'edit'
           end
         else
-          flash[:error]= "Current password invalid"
+          flash[:error]= "Current password is invalid"
           render 'edit'
         end
-    end 
+      end
+        
+    
 
   end
   
