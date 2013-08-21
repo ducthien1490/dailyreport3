@@ -67,7 +67,7 @@ end
   def update   #for admin 
      
   	@user =User.find(params[:id])
-    if(current_user.admin? && !current_user?(@user))  # neu  la admin va khong phai tu update cho minh
+    if(current_user.admin? && !current_user?(@user))
       	if @user.update_attributes!(user_params)
       		flash[:success]= "Manager and Group changed"
       		#sign_in @user
@@ -75,10 +75,7 @@ end
       	else
       		render 'edit'
       	end
-      end
-    
-    if(current_user?(@user))
-       
+    else
         #if @user.update_attributes!(user_params_for_profiles)
         if @user.authenticate(params[:user][:current_password])
           @user.password=params[:user][:password]
@@ -120,11 +117,6 @@ end
   	def user_params
   		params.require(:user).permit(:group_id ,:manager_group)
   	end
-
-    def user_params_for_profiles
-      params.require(:user).permit(:password,:password_confirmation)
-    end
-
   	def save_params
   		params.require(:user).permit(:name, :email, :password,:password_confirmation,:md5_id )
   	end

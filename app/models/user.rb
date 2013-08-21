@@ -7,12 +7,10 @@ class User < ActiveRecord::Base
   validates :email, presence:   true,
                     format:     { with: VALID_EMAIL_REGEX },
                     uniqueness: { case_sensitive: false } 
-  validates :password, length: { minimum: 6 }, presence: true ,:on => :create
-  validates :password, :confirmation => true,
-                       :length => {:within => 6..40},
-                       :on => :update
-  has_secure_password
+  validates :password, length: { minimum: 6 }, presence: true ,:on => :create  
 
+  has_secure_password
+  
   def User.new_remember_token
     SecureRandom.urlsafe_base64
   end
