@@ -52,7 +52,7 @@ end
         end
      end
 
-  		flash[:success] = "Acount created.Wait for adminstration aproval!"
+  		flash[:success] = "Account created.Wait for adminstration aproval!"
   		redirect_to root_url
   	else
   		render 'new'
@@ -67,7 +67,7 @@ end
   def update   #for admin 
      
   	@user =User.find(params[:id])
-    if(current_user.admin? && !current_user?(@user))  # neu  la admin va khong phai tu update cho minh
+    if(current_user.admin? && !current_user?(@user))
       	if @user.update_attributes!(user_params)
       		flash[:success]= "Manager and Group changed"
       		#sign_in @user
@@ -75,10 +75,7 @@ end
       	else
       		render 'edit'
       	end
-      end
-    
-    if(current_user?(@user))
-       
+    else
         #if @user.update_attributes!(user_params_for_profiles)
         if @user.authenticate(params[:user][:current_password])
           @user.password=params[:user][:password]
@@ -135,7 +132,7 @@ end
     def correct_user
      # binding.pry
       #@user = User.find_by_id_or_md5_id(params[:id])
-      @user = User.find(params[:id])
+      @user = User.find_by_id(params[:id])
       if @user.nil?
         @user = User.find_by_md5_id(params[:id])
       end

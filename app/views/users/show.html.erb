@@ -1,19 +1,27 @@
 <% provide(:title,'Personal Information') %>
+	<h2>Personal Information</h2>
 	<div class='center'>
-	<table class='table-striped profile'>
-		<caption>Personal Information</caption>
-	<tr>
-		<th>Name</th>
-		<td><%= @user.name %> </td>
-	</tr>
-	<tr>
-		<th>Email</th>
-		<td><%= @user.email %></td>
-	</tr>	
-	<tr>
-		<th>Team</th>
-		<td><%= @user.group_id %></td>
-	</tr>	
-
-	</table>	
+		<%= render 'shared/menu' %>
+		<div class ='span6'>
+			<table class='table-striped profile'>
+			<tr>
+				<th>Name</th>
+				<td><%= @user.name %> </td>
+			</tr>
+			<tr>
+				<th>Email</th>
+				<td><%= @user.email %></td>
+			</tr>	
+			<tr>
+				<th>Team</th>
+				<td>
+					<%if @user.group_id !=0 && !Group.find_by(id:@user.group_id).nil? %>
+						<%=Group.find_by(id: @user.group_id).name%>
+					<% else %>
+						Deactive
+					<% end %>	
+				</td>
+			</tr>	
+			</table>
+		</div>
 	</div>
