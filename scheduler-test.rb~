@@ -1,5 +1,0 @@
-scheduler = Rufus::Scheduler.start_new
-
-scheduler.in '1m' do
-  puts "To day is Monday"
-end
