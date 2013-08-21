@@ -12,6 +12,7 @@ gem 'pry'
 gem 'bootstrap-datepicker-rails'
 gem 'rails-scheduler'
 gem "rufus-scheduler", "~> 2.0.23"
+gem 'guard-rspec' 
 
 # Use sqlite3 as the database for Active Record
 group :development, :test do
