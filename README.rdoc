@@ -1,12 +1,31 @@
 README
 
-This is the daily report system of Framgia company based on Rails 4.0.0 and Ruby 1.9.3
+This is the daily report system of Framgia company based on Rails 4.0.0 and Ruby 1.9.3 were made by training team including :
+	-Cao Duy Khanh
+	-To Duc Thien
+	-Vu Van Chuyen
 
-In the first time run this application:
-run 
+The databases contain some data for testing:
+-Admin: to.duc.thien@framgia.com
+-Manager group 1: cao.duy.khanh@framgia.com
+-An normal user: example1@framgia.com
+password for every account: 123456
+
+If database are empty,run: 
 $bundle install --without production
 $bundle update
 $bundle install
+$bundle exec rake db:migrate
 
+There is sample data which will be maked if run
+$bundle exec rake db:reset
+$bundle exec rake db:populate
 
+Every account except admin could be write the daily report and edit it in same day. Beside of that, user can be review the daily report of the days before.
 
+Each group has a manager group, who can collect the daily report of group members follow the day chosed on website. Beside of that, everyday the manager groups will be received the daily report of each member in groups at 5:00 pm.
+
+The admin could change the status of member including: active when signup through email, assign group for user, making and editing groups and questions for each group.
+
+For more detail about this website,visit
+https://docs.google.com/document/d/1OYAOcyj7b7i99PuBEHbh9ZNJxdb5qoLfhKPTf2KoKiY/edit
